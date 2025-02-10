@@ -24,9 +24,8 @@ body {
     z-index:2; /* Higher z-index so it stays on top of the palm tree */
 }
 
-/* Heading styling */
 h1 {
-    font-size: 2.5em;
+    font-size: 5vw; /* Use viewport width for responsive font size */
     margin-bottom: 20px;
     font-family: 'Georgia', serif;
     color: #ff5722; /* Warm beach bar color */
@@ -37,7 +36,24 @@ h1 {
     background-color: rgba(0, 0, 0, 0.5); /* Background for readability */
     padding: 10px 20px;
     border-radius: 10px;
-    
+}
+
+/* Media query for mobile devices */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 6vw; /* Slightly larger font size for smaller screens */
+        top: -30px; /* Adjust title’s position for smaller screens */
+        padding: 8px 15px; /* Reduce padding */
+    }
+}
+
+/* Media query for very small devices like phones in portrait mode */
+@media (max-width: 400px) {
+    h1 {
+        font-size: 8vw; /* Even larger font size for tiny screens */
+        top: -20px; /* Adjust title’s position */
+        padding: 5px 10px; /* Reduce padding even more */
+    }
 }
 
 /* PulmTree icon added to the top of the body */
