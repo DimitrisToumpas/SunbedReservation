@@ -25,36 +25,39 @@ body {
 }
 
 h1 {
-    font-size: 5vw; /* Use viewport width for responsive font size */
+    font-size: clamp(24px, 5vw, 60px); /* Responsive font size */
     margin-bottom: 20px;
     font-family: 'Georgia', serif;
     color: #ff5722; /* Warm beach bar color */
-    position: absolute; /* Position title above the form */
-    top: -40px; /* Adjust the title’s position */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.5); /* Background for readability */
-    padding: 10px 20px;
-    border-radius: 10px;
+    text-align: center; /* Ensures text is centered on all screen sizes */
+
+    position: relative; /* Keeps it in flow for better positioning */
+    top: 0; /* Avoids fixed offset issues */
+
+    background-color: rgba(0, 0, 0, 0.6); /* Slightly darker for readability */
+    padding: 12px 25px;
+    border-radius: 12px;
+    max-width: 90%; /* Prevents it from being too wide */
+    margin: 0 auto; /* Centers it properly */
 }
 
 /* Media query for mobile devices */
-@media (max-width: 600px) {
+/*@media (max-width: 600px) {
     h1 {
-        font-size: 6vw; /* Slightly larger font size for smaller screens */
-        top: -30px; /* Adjust title’s position for smaller screens */
-        padding: 8px 15px; /* Reduce padding */
-    }
-}
+        font-size: 6vw;*/ /* Slightly larger font size for smaller screens */
+        /*top: -30px;*/ /* Adjust title’s position for smaller screens */
+        /*padding: 8px 15px;*/ /* Reduce padding */
+    /*}
+}*/
 
 /* Media query for very small devices like phones in portrait mode */
-@media (max-width: 400px) {
+/*@media (max-width: 400px) {
     h1 {
-        font-size: 8vw; /* Even larger font size for tiny screens */
-        top: -20px; /* Adjust title’s position */
-        padding: 5px 10px; /* Reduce padding even more */
-    }
-}
+        font-size: 8vw;*/ /* Even larger font size for tiny screens */
+        /*top: -20px;*/ /* Adjust title’s position */
+        /*padding: 5px 10px;*/ /* Reduce padding even more */
+    /*}
+}*/
 
 /* PulmTree icon added to the top of the body */
 .palm-tree {

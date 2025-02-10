@@ -1,8 +1,7 @@
  // Import the functions you need from the SDKs you need
-    //import {initializeApp} from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
-    //import { getFirestore} from "firebase/firestore";
-src="https://www.gstatic.com/firebasejs/11.3.0/firebase-app-compat.js"
-src="https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore-compat.js"
+    import {initializeApp} from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app.js";
+    import { getFirestore} from "firebase/firestore";
+
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
