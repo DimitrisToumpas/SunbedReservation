@@ -20,6 +20,10 @@ const saveData = async () => {
         const date = document.getElementById("date").value;  // In YYYY-MM-DD format
         const time = document.getElementById("time").value;  // In HH:mm format
         // Adding a new document to the "events" collection with name, room, date, and time fields
+        if (!name || !room || !date || !time) {
+            alert("Please fill in all fields!");
+            return;
+        }
         const docRef = await db.collection("reservations").add({
             name: name,
             room: room,
@@ -27,16 +31,32 @@ const saveData = async () => {
             time: time
         });
 
-        if (!name || !room || !date || !time) {
-            alert("Please fill in all fields!");
-            return;
-        }
-
+       
+        document.getElementById("name").value = "";
+        document.getElementById("room").value = "";
+        document.getElementById("date").value = "";
+        document.getElementById("time").value = "";
+        
+        showCustomAlert("You made a reservation!");
         console.log("Document written with ID: ", docRef.id);
     } catch (e) {
         console.error("Error adding document: ", e);
     }
 };
 
+function showCustomAlert(message) {
+    const alertBox = document.getElementById("customAlert");
+    const alertMessage = document.getElementById("alertMessage");
+    alertMessage.textContent = message;
+    alertBox.style.display = "block"; // Show the modal
+}
+
+function closeAlert() {
+    document.getElementById("customAlert").style.display = "none"; // Hide the modal
+}
+
+
+
+document.getElementById("ok").addEventListener("click", closeAlert);
 document.getElementById("submit").addEventListener("click", saveData);
 

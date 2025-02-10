@@ -13,6 +13,30 @@ body {
     text-align: center;
 }
 
+.custom-alert {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ff5722; /* Alert color */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    z-index: 1000;
+}
+
+    .custom-alert button {
+        background-color: #fff;
+        color: #ff5722;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
 .form-container {
     background: rgba(255, 255, 255, 0.8); /* Light background for the form */
     border-radius: 15px;
@@ -25,20 +49,22 @@ body {
 }
 
 h1 {
-    font-size: clamp(24px, 5vw, 60px); /* Responsive font size */
+    font-size: clamp(20px, 5vw, 40px); /* Responsive font size */
     margin-bottom: 20px;
     font-family: 'Georgia', serif;
     color: #ff5722; /* Warm beach bar color */
     text-align: center; /* Ensures text is centered on all screen sizes */
 
-    position: relative; /* Keeps it in flow for better positioning */
-    top: 0; /* Avoids fixed offset issues */
-
+    position: absolute; /* Positions at the top */
+    transform: translateX(-50%);
+    top: 10px; /* Adjusts distance from the top */
+    left: 50%; /* Centers horizontally */
     background-color: rgba(0, 0, 0, 0.6); /* Slightly darker for readability */
     padding: 12px 25px;
     border-radius: 12px;
-    max-width: 90%; /* Prevents it from being too wide */
+    max-width: 60%; /* Prevents it from being too wide */
     margin: 0 auto; /* Centers it properly */
+    z-index: 3;
 }
 
 /* Media query for mobile devices */
