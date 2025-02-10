@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="StyleSheet.css"> <!-- Link to the external CSS file -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+</head>
+<body>
+    <h1>Sunbed Reservation Form</h1>
+    <div class="form-container">
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="room">Room:</label>
+            <input type="text" id="room" name="Room Number" required><br><br>
+
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required><br><br>
+
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time" required><br><br>
+
+            <button onclick="Submit()" type="submit">Submit Reservation</button>
+        </form>
+    </div>
+    <img src="https://www.svgrepo.com/show/295665/palm-tree-island.svg" alt="Palm Tree" class="palm-tree">
+</body>
+
+</html >
+<script>
+    function Submit() {
+        var name = document.getElementById("name").value;
+        var room = document.getElementById("room").value;
+        var date = document.getElementById("date").value;
+        var time = document.getElementById("time").value;
+        if (name && room && date && time) {
+            if (name == "reception") alert("Show reservations");
+            else alert("A Reservation Has Been Created");
+        }
+        else {
+            // If any field is empty, show an alert
+            alert("Please fill all fields.");
+        }
+    }
+</script>
