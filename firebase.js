@@ -39,5 +39,5 @@ const saveData = async () => {
     }
 };
 
-
+document.getElementById("submit").addEventListener("click", saveData);
 
