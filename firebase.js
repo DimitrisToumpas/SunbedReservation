@@ -13,21 +13,24 @@
 const app = firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
 
-
-const name = document.getElementById("name").value;
-const room = document.getElementById("room").value;
-const date = document.getElementById("date").value;  // In YYYY-MM-DD format
-const time = document.getElementById("time").value;  // In HH:mm format
-
 const saveData = async () => {
     try {
+        const name = document.getElementById("name").value;
+        const room = document.getElementById("room").value;
+        const date = document.getElementById("date").value;  // In YYYY-MM-DD format
+        const time = document.getElementById("time").value;  // In HH:mm format
         // Adding a new document to the "events" collection with name, room, date, and time fields
-        const docRef = await addDoc(collection(db, "reservations"), {
+        const docRef = await db.collection("reservations").add({
             name: name,
             room: room,
             date: date, 
             time: time
         });
+
+        if (!name || !room || !date || !time) {
+            alert("Please fill in all fields!");
+            return;
+        }
 
         console.log("Document written with ID: ", docRef.id);
     } catch (e) {
