@@ -65,18 +65,20 @@ h1 {
     margin-bottom: 20px;
     font-family: 'Georgia', serif;
     color: #ff5722; /* Warm beach bar color */
-    text-align: center; /* Ensures text is centered on all screen sizes */
+    text-align: center;
 
     position: absolute; /* Positions at the top */
     transform: translateX(-50%);
     top: 10px; /* Adjusts distance from the top */
     left: 50%; /* Centers horizontally */
-    background-color: rgba(0, 0, 0, 0.5);
- /* Slightly darker for readability */
+    
+    background-color: rgba(0, 0, 0, 0.5); /* Slightly darker for readability */
     padding: 12px 25px;
     border-radius: 5px;
-    max-width: 40%; /* Prevents it from being too wide */
-    margin: 0 auto; /* Centers it properly */
+    
+    display: inline-block; /* Ensures background only wraps around text */
+    white-space: nowrap; /* Prevents text from breaking into multiple lines */
+    
     z-index: 3;
 }
 
