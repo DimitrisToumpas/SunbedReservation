@@ -9,6 +9,7 @@ body {
     padding: 0;
     height: 100vh;
     overflow: hidden;
+    verscroll-behavior: contain;
     display: flex;
     justify-content: center;
     align-items: center;
