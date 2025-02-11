@@ -61,22 +61,20 @@ body {
     z-index:2; /* Higher z-index so it stays on top of the palm tree */
 }
 
+
 h1 {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    margin: auto;
     font-size: clamp(20px, 5vw, 30px); /* Responsive font size */
-    margin-bottom: 20px;
     font-family: 'Georgia', serif;
     color: #231d22;
     text-align: center;
-    position: absolute; /* Positions at the top */
     transform: translateX(-50%);
-    left: 50%; /* Centers horizontally */
-
-    margin-top: 20px; /* Ensure some space between the logo and title */
-    margin-bottom: 20px; /* Space between the title and form */
     padding: 12px 25px;
     border-radius: 5px;
     white-space: nowrap; /* Prevents text from breaking into multiple lines */
-
     z-index: 3;
 }
 
