@@ -18,10 +18,11 @@ body {
   position: absolute;
   top: 20px;  /* Adjust to set the distance from the top */
   left: 20px; /* Adjust to set the distance from the left */
+  margin-bottom:auto;
 }
 
 .logo {
-  width: 100px;  /* Adjust the logo size */
+  width: 150px;  /* Adjust the logo size */
   height: auto;   /* Maintain the aspect ratio */
 }
 
@@ -64,7 +65,7 @@ h1 {
     font-size: clamp(20px, 5vw, 30px); /* Responsive font size */
     margin-bottom: 20px;
     font-family: 'Georgia', serif;
-    color: #231d22; /* Warm beach bar color */
+    color: #231d22; 
     text-align: center;
     position: absolute; /* Positions at the top */
     transform: translateX(-50%);
