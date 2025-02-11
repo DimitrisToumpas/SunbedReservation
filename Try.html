@@ -7,7 +7,33 @@
     <title>Reservations Table</title>
     <script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore-compat.js"></script>
-         
+<style>
+
+        .table-container {
+            width: 90%;
+            max-width: 800px;
+            height: 400px; /* Adjust height as needed */
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            color: #757575;
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+</style>        
 </head>
 <body>
 
