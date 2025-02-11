@@ -72,11 +72,11 @@ h1 {
     top: 10px; /* Adjusts distance from the top */
     left: 50%; /* Centers horizontally */
     
-    background-color: rgba(0, 0, 0, 0.5); /* Slightly darker for readability */
+    
     padding: 12px 25px;
     border-radius: 5px;
     
-    display: inline-block; /* Ensures background only wraps around text */
+    
     white-space: nowrap; /* Prevents text from breaking into multiple lines */
     
     z-index: 3;
