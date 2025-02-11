@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations Table</title>
+  <script src="firebase.js" type="module" defer></script>
+<script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+    <h1>Reservations Table</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Room</th>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody id="reservationsTable"></tbody>
+    </table>
+  
+<script>
+        async function loadReservations() {
+            const tableBody = document.getElementById("reservationsTable");
+            tableBody.innerHTML = "";
+
+            const querySnapshot = await getDocs(collection(db, "reservations"));
+            querySnapshot.forEach(doc => {
+                const data = doc.data();
+                const row = `<tr><td>${data.name}</td><td>${data.date}</td></tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        loadReservations();
+    </script>
+</body>
+</html>
