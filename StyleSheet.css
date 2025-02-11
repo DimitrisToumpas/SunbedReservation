@@ -14,6 +14,17 @@ body {
     text-align: center;
 }
 
+.logo-container {
+  position: absolute;
+  top: 20px;  /* Adjust to set the distance from the top */
+  left: 20px; /* Adjust to set the distance from the left */
+}
+
+.logo {
+  width: 100px;  /* Adjust the logo size */
+  height: auto;   /* Maintain the aspect ratio */
+}
+
 .custom-alert {
     display: none; /* Hidden by default */
     position: fixed;
