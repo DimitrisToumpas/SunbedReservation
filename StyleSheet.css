@@ -71,10 +71,10 @@ h1 {
     transform: translateX(-50%);
     top: 10px; /* Adjusts distance from the top */
     left: 50%; /* Centers horizontally */
-    /* background-color: rgba(0, 0, 0, 0.6);*/
+    background-color: rgba(0, 0, 0, 0.5);
  /* Slightly darker for readability */
     padding: 12px 25px;
-    border-radius: 10px;
+    border-radius: 5px;
     max-width: 40%; /* Prevents it from being too wide */
     margin: 0 auto; /* Centers it properly */
     z-index: 3;
