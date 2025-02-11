@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservations Table</title>
   <script src="firebase.js" type="module" defer></script>
+<script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
     <h1>Reservations Table</h1>
@@ -19,9 +21,8 @@
         </thead>
         <tbody id="reservationsTable"></tbody>
     </table>
-  <script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore-compat.js"></script>
-
+  
+<script>
         async function loadReservations() {
             const tableBody = document.getElementById("reservationsTable");
             tableBody.innerHTML = "";
