@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="StyleSheet.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservations Table</title>
+    <script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore-compat.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .table-container {
+            width: 90%;
+            max-width: 800px;
+            height: 400px; /* Adjust height as needed */
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            background: #f1f1f1;
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Reservations Table</h1>
+    
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Room</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody id="reservationsTable"></tbody>
+        </table>
+    </div>
+
+    <script type="module">
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDqAa4PoaB7vyQ9FE0WQFDe3Nli7nC1wJA",
+            authDomain: "reservations-78188.firebaseapp.com",
+            projectId: "reservations-78188",
+            storageBucket: "reservations-78188.firebasestorage.app",
+            messagingSenderId: "924388919428",
+            appId: "1:924388919428:web:e888d91364fe96cf34dad1"
+        };
+
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        const tableBody = document.getElementById("reservationsTable");
+
+        async function fetchReservations() {
+            try {
+                const querySnapshot = await db.collection("reservations").get();
+                querySnapshot.forEach((doc) => {
+                    const data = doc.data();
+
+                    // Create a new row for each reservation
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${data.name}</td>
+                        <td>${data.room}</td>
+                        <td>${data.date}</td>
+                        <td>${data.time}</td>
+                    `;
+
+                    tableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error("Error loading reservations:", error);
+            }
+        }
+
+        fetchReservations();
+    </script>
+
+    <div class="footer">Copyrights © 2025 Toumpas Dimitris</div>
+
+</body>
+</html>
