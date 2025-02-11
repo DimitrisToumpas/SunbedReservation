@@ -72,7 +72,8 @@ h1 {
     top: 10px; /* Adjusts distance from the top */
     left: 50%; /* Centers horizontally */
 
-    margin-top: 10px;
+    margin-top: 20px; /* Ensure some space between the logo and title */
+    margin-bottom: 20px; /* Space between the title and form */
     padding: 12px 25px;
     border-radius: 5px;
     white-space: nowrap; /* Prevents text from breaking into multiple lines */
