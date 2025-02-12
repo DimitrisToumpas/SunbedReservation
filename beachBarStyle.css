@@ -50,7 +50,7 @@ body {
     max-width: 600px;
 }
 
-/* Umbrella items */
+/* Umbrella container */
 .umbrella {
     display: flex;
     flex-direction: column;
@@ -58,7 +58,12 @@ body {
     justify-content: center;
 }
 
-/* Umbrella top */
+/* Hide the checkbox */
+.umbrella-checkbox {
+    display: none;
+}
+
+/* Umbrella top (label acts as a button) */
 .umbrella-top {
     background: radial-gradient(circle, red, orange);
     color: white;
@@ -69,27 +74,14 @@ body {
     line-height: 50px;
     border-radius: 50%;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-}
-
-/* Checkbox */
-.umbrella-checkbox {
-    display: none;
-}
-
-/* Checkbox label */
-.checkbox-label {
-    background: white;
-    color: black;
-    padding: 5px 10px;
-    border-radius: 5px;
     cursor: pointer;
-    margin-top: 5px;
-    font-size: 14px;
-    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Checked state */
-.umbrella-checkbox:checked + .checkbox-label {
+/* Change color when selected */
+.umbrella-checkbox:checked + .umbrella-top {
     background: green;
     color: white;
 }
