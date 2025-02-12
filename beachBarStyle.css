@@ -1,0 +1,95 @@
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* Beach background */
+.beach {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sea (top section) */
+.sea {
+    background: #3b9dd9;
+    height: 20vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Wave effect */
+.waves {
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background: white;
+    bottom: -10px;
+    border-radius: 50% 50% 0 0;
+}
+
+/* Sand (bottom section) */
+.sand {
+    background: #f4e1ba;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Umbrella grid */
+.umbrella-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    width: 90%;
+    max-width: 600px;
+}
+
+/* Umbrella items */
+.umbrella {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Umbrella top */
+.umbrella-top {
+    background: radial-gradient(circle, red, orange);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Checkbox */
+.umbrella-checkbox {
+    display: none;
+}
+
+/* Checkbox label */
+.checkbox-label {
+    background: white;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+}
+
+/* Checked state */
+.umbrella-checkbox:checked + .checkbox-label {
+    background: green;
+    color: white;
+}
