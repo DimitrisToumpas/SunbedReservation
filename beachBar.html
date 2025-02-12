@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beach Umbrella Selector</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="beach">
+        <div class="sea">
+            <div class="waves"></div>
+        </div>
+        <div class="sand">
+            <div class="umbrella-grid">
+                <!-- Generate 20 umbrellas dynamically -->
+                <script>
+                    for (let i = 1; i <= 20; i++) {
+                        document.write(`
+                            <div class="umbrella">
+                                <div class="umbrella-top">${i}</div>
+                                <input type="checkbox" id="select-${i}" class="umbrella-checkbox">
+                                <label for="select-${i}" class="checkbox-label">Select</label>
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
