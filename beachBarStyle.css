@@ -50,7 +50,7 @@ body {
 
 /* Sand (middle section) */
 .sand {
-    background: url(sea.jpg) no-repeat center center; /* path to the image */
+    background: url(sand.jpg) no-repeat center center; /* path to the image */
     background-size: cover; /* Makes sure the image covers the entire div */
     background-position: center; /* Centers the image within the div */
     background-repeat: no-repeat; /* Ensures the image doesn't repeat */
