@@ -39,21 +39,32 @@ body {
 
 
 /* Wave effect */
-.waves {
-    position: absolute;
-    width: 100%;
-    height: 20px;
+/*.waves {
+    display: flex;
+    flex: 0.01;
+    justify-content: center;
+    align-items: center;
     background: white;
     bottom: -10px;
     border-radius: 50% 50% 0 0;
+}*/
+.waves {
+    position: absolute;
+    bottom: -20px; /* Places it right between sea and sand */
+    width: 100%;
+    height: 30px;
+    background: white;
+    clip-path: ellipse(70% 100% at 50% 100%);
+    opacity: 0.8;
 }
 
 /* Sand (middle section) */
 .sand {
-    background: url(sand.jpg) no-repeat center center; /* path to the image */
+    background: url(sand.jpg) center center; /* path to the image */
     background-size: cover; /* Makes sure the image covers the entire div */
     background-position: center; /* Centers the image within the div */
-    background-repeat: no-repeat; /* Ensures the image doesn't repeat */
+    background-repeat: repeat; /* Ensures the image doesn't repeat */
+    background-size: 100% 100%;
     /* background: #d9b9a2; */
     flex: 3;
     display: flex;
@@ -63,8 +74,9 @@ body {
 
 /* Hotel (bottom section) */
 .hotel {
-    background: url(logo-sealevel.jpg) no-repeat center center;
-    background-size: cover; 
+    background: center;
+    background-size: cover;
+    background-size: 100% 100%;
     /*background: lightgrey;*/
     flex: 2;
     display: flex;
@@ -96,15 +108,17 @@ body {
 
 /* Umbrella top (label acts as a button) */
 .umbrella-top {
-    background: radial-gradient(circle, red, brown);
-    color: white;
-    font-size: 20px;
+    background: url(umbrella.svg) center;
+   /* background-size: cover;*/
+    background-size: 180% 180%;
+    color: navy;
+    font-size: 30px;
     font-weight: bold;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
+    width: 80px;
+    height: 80px;
+    /*  line-height: 50px;*/
     border-radius: 50%;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    box-shadow: 19px 14px 14px 2px rgba(0, 0, 0, 1);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -113,8 +127,11 @@ body {
 
 /* Change color when selected */
 .umbrella-checkbox:checked + .umbrella-top {
-    background: green;
-    color: white;
+    background: center;
+    background-color: #00ffb5c2;
+    color: #ffffff;
+    font-size: 50px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
 }
 
 .confirm-button{
