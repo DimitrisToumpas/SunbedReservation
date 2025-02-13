@@ -100,7 +100,7 @@ background-color: #696969;
 }
 
 button{
-color: green;
+background-color: green;
 display: flex;
 align-items: center;
 justify-content : center;
