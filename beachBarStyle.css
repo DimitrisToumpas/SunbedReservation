@@ -1,4 +1,4 @@
-σε/* General styles */
+/* General styles */
 body {
     margin: 0;
     padding: 0;
@@ -97,6 +97,9 @@ body {
 
 .confirm-button{
 background-color: #696969;
+display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center;
 }
 
 .button {
