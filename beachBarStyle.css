@@ -25,14 +25,16 @@ body {
 
 /* sea.css */
 .sea {
-  /* width: 100%;  or specific width, e.g., 300px */
   height: 20vh;
+  width: 100%; 
   position: relative;
   overflow: hidden;
-  background-image: url(sea.jpg); /* path to the image */
+  background-image: url(sea.jpg) no-repeat center center; /* path to the image */
   background-size: cover; /* Makes sure the image covers the entire div */
   background-position: center; /* Centers the image within the div */
   background-repeat: no-repeat; /* Ensures the image doesn't repeat */
+  justify-content: center;
+  align-items: center;
 }
 
 
