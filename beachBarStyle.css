@@ -97,9 +97,10 @@ body {
 
 .confirm-button{
 background-color: #696969;
-display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center;
+flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .button {
