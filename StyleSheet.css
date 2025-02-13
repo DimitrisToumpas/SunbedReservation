@@ -9,7 +9,6 @@ body {
     padding: 0;
     height: 100vh;
     overflow: hidden;
-    verscroll-behavior: contain;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,7 +42,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #ff5722; /* Alert color */
+    background-color: #363f50; /* Alert color */
     color: white;
     padding: 20px;
     border-radius: 10px;
@@ -53,24 +52,29 @@ body {
 }
 
     .custom-alert button {
-        background-color: #fff;
-        color: #ff5722;
+        background-color: #3c3436;
+        color: white;
         border: none;
         padding: 10px 20px;
         border-radius: 5px;
         cursor: pointer;
     }
 
-.form-container {
-    background: rgba(255, 255, 255, 0.8); /* Light background for the form */
-    border-radius: 15px;
-    padding: 40px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative; /* Ensure the form stays above the palm tree */
-    z-index:2; /* Higher z-index so it stays on top of the palm tree */
-}
+        .custom-alert button:hover {
+            background-color: #768ba3;
+        }
+
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.8); /* Light background for the form */
+            border-radius: 15px;
+            padding: 40px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative; /* Ensure the form stays above the palm tree */
+            z-index: 2; /* Higher z-index so it stays on top of the palm tree */
+        }
 
 
 h1 {
@@ -127,7 +131,7 @@ select {
 }
 
 button {
-    background-color: #3c3436; /* Beach bar orange */
+    background-color: #3c3436; 
     color: white;
     font-size: 1.2em;
     padding: 12px 25px;
@@ -138,11 +142,11 @@ button {
 }
 
     button:hover {
-        background-color: #ff9800; /* Lighter shade for hover effect */
+        background-color: #363f50; /* Lighter shade for hover effect */
     }
 
     button:active {
-        background-color: #e64a19; /* Darker shade for active button */
+        background-color: #768ba3; /* Darker shade for active button */
     }
 
 table {

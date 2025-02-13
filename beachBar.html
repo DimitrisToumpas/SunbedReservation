@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Beach Umbrella Selector</title>
     <link rel="stylesheet" href="beachBarStyle.css">
+    <!--<script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore-compat.js"></script>-->
 </head>
 <body>
     <div class="beach">
@@ -32,12 +34,58 @@
 </div>
     </div>
 
-<script>
-document.getElementById("confirmButton").addEventListener("click", function () {
-            if ("vibrate" in navigator) { 
-                navigator.vibrate(100); // Vibrate for 200ms
-}
-});
+<script type="module">
+    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
+    import { db } from './firebase.js';
+    const updateData = async () => {
+        try {
+            let selectedUmbrellas = [];
+            if (!checkUmbrella(selectedUmbrellas)) return;
+            const name = localStorage.getItem("name");
+            const room = localStorage.getItem("room");
+            const date = localStorage.getItem("date");
+            const time = localStorage.getItem("time");
+
+            console.log(name, room, date, time, selectedUmbrellas);
+
+            const docRef = await addDoc(collection(db, "reservations"), {
+                name: name,
+                room: room,
+                date: date,
+                time: time,
+                umbrellas: selectedUmbrellas // Fixed incorrect `.value`
+            });
+
+            console.log("Document written with ID: ", docRef.id);
+            alert("Reservation successful!");
+        } catch (error) {
+            console.error("Error adding document: ", error);
+        }
+
+    };
+
+    function checkUmbrella(selectedUmbrellas)
+    {
+        document.querySelectorAll(".umbrella-checkbox:checked").forEach((checkbox) => {
+            const umbrellaNumber = checkbox.id.split("-")[1]; // Extract the number from 'select-X'
+            selectedUmbrellas.push(umbrellaNumber);
+        });
+
+        if (selectedUmbrellas.length === 0) {
+            alert("Please select at least one umbrella.");
+            return false;
+        }
+        return true;
+    }
+        
+        document.getElementById("confirmButton").addEventListener("click", function ()
+        {
+            updateData();
+            if ("vibrate" in navigator)
+            { 
+                navigator.vibrate(50); // Vibrate for 50ms
+            }
+        });
 </script>       
 </body>
 </html>
