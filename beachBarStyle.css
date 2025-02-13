@@ -98,3 +98,10 @@ body {
 .confirm-button{
 background-color: #696969;
 }
+
+button{
+color: green;
+display: flex;
+align-items: center;
+justify-content : center;
+}
