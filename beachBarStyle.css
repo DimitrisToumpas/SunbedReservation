@@ -1,4 +1,4 @@
-/* General styles */
+σε/* General styles */
 body {
     margin: 0;
     padding: 0;
@@ -93,4 +93,8 @@ body {
 .umbrella-checkbox:checked + .umbrella-top {
     background: green;
     color: white;
+}
+
+.confirm-button{
+background-color: #696969;
 }
