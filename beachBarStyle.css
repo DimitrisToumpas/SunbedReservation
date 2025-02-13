@@ -44,7 +44,7 @@ body {
 
 /* Hotel (bottom section) */
 .hotel {
-    background: url(logo-sealevel.jpg);
+    background: url(logo-sealevel.jpg) no-repeat center center;
     /*background: lightgrey;*/
     flex: 2;
     display: flex;
