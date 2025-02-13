@@ -17,7 +17,7 @@ body {
 /* Sea (top section) */
 .sea {
     background: url('sea.jpg') no-repeat center center;
-    */ background: #3b9dd9;/*
+    /* background: #3b9dd9; */
     height: 20vh;
     position: relative;
     overflow: hidden;
