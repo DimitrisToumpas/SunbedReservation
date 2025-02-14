@@ -25,7 +25,10 @@
     </div>
 
     <script type="module">
-        // Your Firebase configuration
+    import { collection, getDocs } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
+    import { db } from './firebase.js';
+
+       /* // Your Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyDqAa4PoaB7vyQ9FE0WQFDe3Nli7nC1wJA",
             authDomain: "reservations-78188.firebaseapp.com",
@@ -38,6 +41,7 @@
         // Initialize Firebase
         const app = firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
+        */
 
         const tableBody = document.getElementById("reservationsTable");
         try
@@ -54,6 +58,7 @@
                         <td>${data.room}</td>
                         <td>${data.date}</td>
                         <td>${data.time}</td>
+                        <td>${data.umbrella}</td>
                     `;
 
                     tableBody.appendChild(row);

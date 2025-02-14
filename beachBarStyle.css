@@ -108,6 +108,15 @@ body {
     display: none;
 }
 
+.umbrella-checkbox:disabled + .umbrella-top {
+    background: center;
+    background-color: #222222bd;
+    color: #ffffff;
+    font-size: 50px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 1);
+}
+
+
 /* Umbrella top (label acts as a button) */
 .umbrella-top {
     background: url(umbrella.svg) center;
