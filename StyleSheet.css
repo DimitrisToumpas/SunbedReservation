@@ -15,18 +15,17 @@ body {
     text-align: center;
 }
 
- .table-container {
-            position:absolute;
-            top: 5px;
-            justify-content: start;
-            align-items: center;
-            display: flex;
-            flex: auto;
-            width: 90%;
-            max-width: 90%;
-            /* overflow-y: auto; */
-            border: 1px solid #ccc;
-        }
+.table-container {
+    position: absolute;
+    top: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex
+;
+    flex: inherit;
+    width: 90%;
+    border: 1px solid #ccc;
+}
 
 .logo-container {
   position: absolute;
