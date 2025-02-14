@@ -39,15 +39,6 @@ body {
 
 
 /* Wave effect */
-/*.waves {
-    display: flex;
-    flex: 0.01;
-    justify-content: center;
-    align-items: center;
-    background: white;
-    bottom: -10px;
-    border-radius: 50% 50% 0 0;
-}*/
 .waves {
     position: absolute;
     bottom: -20px; /* Places it right between sea and sand */
@@ -133,6 +124,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.umbrella-top:disabled {
+    background-color: grey;
 }
 
 /* Change color when selected */
