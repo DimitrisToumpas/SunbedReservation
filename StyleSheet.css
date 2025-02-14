@@ -16,8 +16,8 @@ body {
 }
 
  .table-container {
-            position: relative;
-            top: 10px;
+            position:absolute;
+            top: 5px;
             justify-content: start;
             align-items: center;
             display: flex;
