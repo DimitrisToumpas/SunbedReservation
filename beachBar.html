@@ -28,8 +28,19 @@
     import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
     import { db } from './firebase.js';
 
+// Generate 20 umbrellas dynamically
+const reservedUmbrellas=getReservedUmbrellas(db);
+console.log("reserved umbrellas are :"+ reservedUmbrellas);                       
+                        for (let i = 1; i <= 20; i++) {
+                            document.write(`
+                                                <div class="umbrella">
+                                                    <input type="checkbox" id="select-${i}" class="umbrella-checkbox">
+                                                    <label for="select-${i}" class="umbrella-top">${i}</label>
+                                                </div>
+                                            `);
+                        }
 
-async function getReservedUmbrellas(db) {
+                        async function getReservedUmbrellas(db) {
     const querySnapshot = await getDocs(collection(db, "reservations"));
     let reserved = new Set();
 
@@ -39,12 +50,9 @@ async function getReservedUmbrellas(db) {
             data.umbrellas.forEach((umbrella) => reserved.add(umbrella));
         }
     });
-console.log("reserved umbrellas are :"+reserved);
     return reserved;
 }
-
-
-
+    
 
     const updateData = async () => {
         try {
@@ -95,24 +103,5 @@ console.log("reserved umbrellas are :"+reserved);
                 navigator.vibrate(50); // Vibrate for 50ms
             }
         });
-</script>
-      <!-- Generate 20 umbrellas dynamically -->
-                    <script>
-const reservedUmbrellas=getReservedUmbrellas(db);
-
-
-                        for (let i = 1; i <= 20; i++) {
-                            document.write(`
-                                                <div class="umbrella">
-                                                    <input type="checkbox" id="select-${i}" class="umbrella-checkbox">
-                                                    <label for="select-${i}" class="umbrella-top">${i}</label>
-                                                </div>
-                                            `);
-                        }
-
-
-
-                        
-                    </script>
 </body>
 </html>
