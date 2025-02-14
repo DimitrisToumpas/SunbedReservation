@@ -39,19 +39,27 @@
     import { db } from './firebase.js';
 
   async function initializePage() {
+           // Wait for the DOM content to be fully loaded
+        document.addEventListener("DOMContentLoaded", async function() {
             let reservedUmbrellas = await getReservedUmbrellas(); // Wait for reserved umbrellas
-            console.log("reserved umbrellas are :"+ reservedUmbrellas);
+
             // Generate umbrellas dynamically based on the reserved umbrellas
-            for (let i = 1; i <= 20; i++) {
-                document.getElementById("umbrella-grid").innerHTML += `
-                    <div class="umbrella">
-                        <input type="checkbox" id="select-${i}" class="umbrella-checkbox" ${reservedUmbrellas.includes(i) ? 'disabled' : ''}>
-                        <label for="select-${i}" class="umbrella-top" style="${reservedUmbrellas.includes(i) ? 'background-color: grey;' : ''}">${i}</label>
-                    </div>
-                `;
+            const umbrellaGrid = document.getElementById("umbrella-grid"); // Get the umbrella grid element
+            
+            // Make sure the umbrellaGrid element exists before adding content
+            if (umbrellaGrid) {
+                for (let i = 1; i <= 20; i++) {
+                    umbrellaGrid.innerHTML += `
+                        <div class="umbrella">
+                            <input type="checkbox" id="select-${i}" class="umbrella-checkbox" ${reservedUmbrellas.includes(i) ? 'disabled' : ''}>
+                            <label for="select-${i}" class="umbrella-top" style="${reservedUmbrellas.includes(i) ? 'background-color: grey;' : ''}">${i}</label>
+                        </div>
+                    `;
+                }
             }
         }
-
+                                  }
+    
         // Fetch reserved umbrellas from Firestore
         async function getReservedUmbrellas() {
             const querySnapshot = await getDocs(collection(db, "reservations"));
