@@ -54,7 +54,7 @@ async function getReservedUmbrellas(db) {
             data.umbrellas.forEach((umbrella) => reserved.add(umbrella));
         }
     });
-
+console.log("reserved umbrellas are :"+reserved);
     return reserved;
 }
 
