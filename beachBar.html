@@ -15,17 +15,6 @@
         
             <div class="sand">
                 <div class="umbrella-grid" id="umbrella-grid">
-                  <script>
-                      // Generate 20 umbrellas dynamically
-                     /*  for (let i = 1; i <= 20; i++) {
-                            document.write(`
-                                                <div class="umbrella">
-                                                    <input type="checkbox" id="select-${i}" class="umbrella-checkbox">
-                                                    <label for="select-${i}" class="umbrella-top">${i}</label>
-                                                </div>
-                                            `);
-                        } */
-                  </script>
                 </div>
             </div>
             <div class=confirm-button>
@@ -48,15 +37,46 @@
         // Make sure the umbrellaGrid element exists before adding content
         if (umbrellaGrid) 
         {
-            console.log("umbrella grid exists!");
             for (let i = 1; i <= 20; i++) 
             {
-                umbrellaGrid.innerHTML += `
+                  const umbrellaDiv = document.createElement("div");
+                umbrellaDiv.classList.add("umbrella");
+
+                const checkbox = document.createElement("input");
+                checkbox.type = "checkbox";
+                checkbox.id = `select-${i}`;
+                checkbox.classList.add("umbrella-checkbox");
+
+                // If umbrella is reserved, disable checkbox and style accordingly
+                if (reservedUmbrellas.includes(i)) {
+                    checkbox.disabled = true; // Disable the checkbox
+                    const label = document.createElement("label");
+                    label.setAttribute("for", `select-${i}`);
+                    label.classList.add("umbrella-top");
+                    label.style.backgroundColor = "grey"; // Change background to grey
+                    label.innerHTML = `${i}`;
+                    umbrellaDiv.appendChild(checkbox);
+                    umbrellaDiv.appendChild(label);
+                } else {
+                    const label = document.createElement("label");
+                    label.setAttribute("for", `select-${i}`);
+                    label.classList.add("umbrella-top");
+                    label.innerHTML = `${i}`;
+                    umbrellaDiv.appendChild(checkbox);
+                    umbrellaDiv.appendChild(label);
+                }
+
+                // Append the umbrella div to the grid
+                umbrellaGrid.appendChild(umbrellaDiv);
+                
+                //old
+                /* umbrellaGrid.innerHTML += `
                 <div class="umbrella">
                 <input type="checkbox" id="select-${i}" class="umbrella-checkbox" ${reservedUmbrellas.includes(i) ? 'disabled' : ''}>
                 <label for="select-${i}" class="umbrella-top" style="${reservedUmbrellas.includes(i) ? 'background-color: grey;' : ''}">${i}</label>
                 </div>
-                `;
+                `; */
+                
             }
         }
     });
