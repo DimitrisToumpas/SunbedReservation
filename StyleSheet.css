@@ -160,6 +160,7 @@ table {
 }
 
 thead {
+    position: sticky;
     background-color: #231d22;
     color: #ffffff;
     font-weight: 600;
