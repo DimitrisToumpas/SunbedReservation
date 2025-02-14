@@ -17,6 +17,11 @@
                 <div class="umbrella-grid">
                     <!-- Generate 20 umbrellas dynamically -->
                     <script>
+
+import { db } from './firebase.js';
+reservedUmbrellas=getReservedUmbrellas(db);
+
+
                         for (let i = 1; i <= 20; i++) {
                             document.write(`
                                                 <div class="umbrella">
@@ -37,6 +42,25 @@
 <script type="module">
     import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
     import { db } from './firebase.js';
+
+
+async function getReservedUmbrellas(db) {
+    const querySnapshot = await getDocs(collection(db, "reservations"));
+    let reserved = new Set();
+
+    querySnapshot.forEach((doc) => {
+        const data = doc.data();
+        if (data.umbrellas) {
+            data.umbrellas.forEach((umbrella) => reserved.add(umbrella));
+        }
+    });
+
+    return reserved;
+}
+
+
+
+
     const updateData = async () => {
         try {
             let selectedUmbrellas = [];
