@@ -17,14 +17,14 @@
                 <div class="umbrella-grid">
                   <script>
                       // Generate 20 umbrellas dynamically
-                       for (let i = 1; i <= 20; i++) {
+                     /*  for (let i = 1; i <= 20; i++) {
                             document.write(`
                                                 <div class="umbrella">
                                                     <input type="checkbox" id="select-${i}" class="umbrella-checkbox">
                                                     <label for="select-${i}" class="umbrella-top">${i}</label>
                                                 </div>
                                             `);
-                        }
+                        } */
                   </script>
                 </div>
             </div>
@@ -38,10 +38,20 @@
     import { collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
     import { db } from './firebase.js';
 
-let reservedUmbrellas = [];
-reservedUmbrellas= await getReservedUmbrellas();
-console.log("reserved umbrellas are :"+ reservedUmbrellas);
-    
+    let reservedUmbrellas = [];
+    reservedUmbrellas= await getReservedUmbrellas();
+    console.log("reserved umbrellas are :"+ reservedUmbrellas);
+                      
+
+for (let i = 1; i <= 20; i++) {
+    document.write(`
+        <div class="umbrella">
+            <input type="checkbox" id="select-${i}" class="umbrella-checkbox" ${reservedUmbrellas.includes(i) ? 'disabled' : ''}>
+            <label for="select-${i}" class="umbrella-top" style="${reservedUmbrellas.includes(i) ? 'background-color: grey;' : ''}">${i}</label>
+        </div>
+    `);
+}
+
     async function getReservedUmbrellas() {
     const querySnapshot = await getDocs(collection(db, "reservations"));
     let reserved = new Set();
