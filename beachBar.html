@@ -14,7 +14,7 @@
         </div>
         
             <div class="sand">
-                <div class="umbrella-grid">
+                <div class="umbrella-grid" id="umbrella-grid">
                   <script>
                       // Generate 20 umbrellas dynamically
                      /*  for (let i = 1; i <= 20; i++) {
@@ -48,6 +48,7 @@
         // Make sure the umbrellaGrid element exists before adding content
         if (umbrellaGrid) 
         {
+            console.log("umbrella grid exists!");
             for (let i = 1; i <= 20; i++) 
             {
                 umbrellaGrid.innerHTML += `
