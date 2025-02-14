@@ -38,32 +38,36 @@
     import { collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
     import { db } from './firebase.js';
 
-    let reservedUmbrellas = [];
-    reservedUmbrellas= await getReservedUmbrellas();
-    console.log("reserved umbrellas are :"+ reservedUmbrellas);
-                      
-
-for (let i = 1; i <= 20; i++) {
-    document.write(`
-        <div class="umbrella">
-            <input type="checkbox" id="select-${i}" class="umbrella-checkbox" ${reservedUmbrellas.includes(i) ? 'disabled' : ''}>
-            <label for="select-${i}" class="umbrella-top" style="${reservedUmbrellas.includes(i) ? 'background-color: grey;' : ''}">${i}</label>
-        </div>
-    `);
-}
-
-    async function getReservedUmbrellas() {
-    const querySnapshot = await getDocs(collection(db, "reservations"));
-    let reserved = new Set();
-
-    querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        if (data.umbrellas) {
-            data.umbrellas.forEach((umbrella) => reserved.add(umbrella));
+  async function initializePage() {
+            let reservedUmbrellas = await getReservedUmbrellas(); // Wait for reserved umbrellas
+            console.log("reserved umbrellas are :"+ reservedUmbrellas);
+            // Generate umbrellas dynamically based on the reserved umbrellas
+            for (let i = 1; i <= 20; i++) {
+                document.getElementById("umbrella-grid").innerHTML += `
+                    <div class="umbrella">
+                        <input type="checkbox" id="select-${i}" class="umbrella-checkbox" ${reservedUmbrellas.includes(i) ? 'disabled' : ''}>
+                        <label for="select-${i}" class="umbrella-top" style="${reservedUmbrellas.includes(i) ? 'background-color: grey;' : ''}">${i}</label>
+                    </div>
+                `;
+            }
         }
-    });
-    return Array.from(reserved); //Set is like an array but have unique values
-}
+
+        // Fetch reserved umbrellas from Firestore
+        async function getReservedUmbrellas() {
+            const querySnapshot = await getDocs(collection(db, "reservations"));
+            let reserved = new Set();
+
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                if (data.umbrellas) {
+                    data.umbrellas.forEach((umbrella) => reserved.add(umbrella));
+                }
+            });
+            return Array.from(reserved); // Convert Set to Array
+        }
+
+        // Call initializePage to render the umbrellas once the page loads
+        initializePage();
     
 
     const updateData = async () => {
