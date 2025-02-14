@@ -52,7 +52,7 @@ console.log("reserved umbrellas are :"+ reservedUmbrellas);
             data.umbrellas.forEach((umbrella) => reserved.add(umbrella));
         }
     });
-    return reserved;
+    return Array.from(reserved); //Set is like an array but have unique values
 }
     
 
