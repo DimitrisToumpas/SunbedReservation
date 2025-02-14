@@ -16,12 +16,16 @@ body {
 }
 
  .table-container {
+            position: relative;
+            top: 10px;
+            justify-content: start;
+            align-items: center;
+            display: flex;
+            flex: auto;
             width: 90%;
-            max-width: 800px;
-            height: 400px; /* Adjust height as needed */
+            max-width: 90%;
             overflow-y: auto;
             border: 1px solid #ccc;
-            margin-top: 20px;
         }
 
 .logo-container {
