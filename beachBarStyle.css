@@ -120,7 +120,7 @@ body {
 /* Umbrella top (label acts as a button) */
 .umbrella-top {
     background: url(umbrella.svg) center;
-    background-size: 170% 170%;
+    background-size: 190% 190%;
     color: navy;
     font-size: 30px;
     font-weight: bold;
