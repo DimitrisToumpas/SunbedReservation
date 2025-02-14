@@ -42,6 +42,7 @@
     document.addEventListener("DOMContentLoaded", async function()
     {
         let reservedUmbrellas = await getReservedUmbrellas(); // Wait for reserved umbrellas
+        console.log("Reserved Umbrellas are : "+ reservedUmbrellas);
         // Generate umbrellas dynamically based on the reserved umbrellas
         const umbrellaGrid = document.getElementById("umbrella-grid"); // Get the umbrella grid element
         // Make sure the umbrellaGrid element exists before adding content
