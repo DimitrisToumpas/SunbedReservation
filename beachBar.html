@@ -98,7 +98,7 @@ console.log("reserved umbrellas are :"+reserved);
 </script>
       <!-- Generate 20 umbrellas dynamically -->
                     <script>
-reservedUmbrellas=getReservedUmbrellas(db);
+const reservedUmbrellas=await getReservedUmbrellas(db);
 
 
                         for (let i = 1; i <= 20; i++) {
