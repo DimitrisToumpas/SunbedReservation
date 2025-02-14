@@ -126,9 +126,6 @@ body {
     justify-content: center;
 }
 
-.umbrella-top:disabled {
-    background-color: grey;
-}
 
 /* Change color when selected */
 .umbrella-checkbox:checked + .umbrella-top {
