@@ -39,7 +39,7 @@
     import { db } from './firebase.js';
 
 let reservedUmbrellas = [];
-reservedUmbrellas=getReservedUmbrellas();
+reservedUmbrellas= await getReservedUmbrellas();
 console.log("reserved umbrellas are :"+ reservedUmbrellas);
     
     async function getReservedUmbrellas() {
