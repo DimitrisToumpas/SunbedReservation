@@ -84,6 +84,14 @@
             document.getElementById("customAlert").style.display = "none"; // Hide the modal
             window.location.href = 'beachBar.html';
         }
+
+        document.getElementById("submit").addEventListener("click", function ()
+        {
+            if ("vibrate" in navigator)
+            { 
+                navigator.vibrate(50);
+            }
+        });
         
     </script>
 </body>
