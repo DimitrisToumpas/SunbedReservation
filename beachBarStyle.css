@@ -88,7 +88,7 @@ body {
 .umbrella-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 15px;
+    gap: 20px;
     width: 90%;
     max-width: 600px;
 }
@@ -109,14 +109,13 @@ body {
 /* Umbrella top (label acts as a button) */
 .umbrella-top {
     background: url(umbrella.svg) center;
-   /* background-size: cover;*/
-    background-size: 180% 180%;
+    background-size: 170% 170%;
     color: navy;
     font-size: 30px;
     font-weight: bold;
-    width: 80px;
-    height: 80px;
-    /*  line-height: 50px;*/
+    width: 70px;
+    height: 70px;
+    line-height: 50px;
     border-radius: 50%;
     box-shadow: 19px 14px 14px 2px rgba(0, 0, 0, 1);
     cursor: pointer;
