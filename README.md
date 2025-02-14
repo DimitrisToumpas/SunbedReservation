@@ -17,6 +17,10 @@ Welcome to the **Umbrella Reservation for Beach Bars** project! This web-based a
 - **UI/UX**: Custom CSS for beach-bar-themed design
 - **Libraries**: Firebase SDK for real-time data fetching and Firestore interaction
 
-## Installation
 
-...
+
+## URL
+### Index
+https://dimitristoumpas.github.io/SunbedReservation
+### Management Page
+https://dimitristoumpas.github.io/SunbedReservation/reserveList
