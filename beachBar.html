@@ -15,7 +15,17 @@
         
             <div class="sand">
                 <div class="umbrella-grid">
-                  <!-- code for umbrellas was here-->
+                  <script>
+                      // Generate 20 umbrellas dynamically
+                       for (let i = 1; i <= 20; i++) {
+                            document.write(`
+                                                <div class="umbrella">
+                                                    <input type="checkbox" id="select-${i}" class="umbrella-checkbox">
+                                                    <label for="select-${i}" class="umbrella-top">${i}</label>
+                                                </div>
+                                            `);
+                        }
+                  </script>
                 </div>
             </div>
             <div class=confirm-button>
@@ -28,19 +38,11 @@
     import { collection, addDoc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
     import { db } from './firebase.js';
 
-// Generate 20 umbrellas dynamically
-const reservedUmbrellas=getReservedUmbrellas(db);
-console.log("reserved umbrellas are :"+ reservedUmbrellas);                       
-                        for (let i = 1; i <= 20; i++) {
-                            document.write(`
-                                                <div class="umbrella">
-                                                    <input type="checkbox" id="select-${i}" class="umbrella-checkbox">
-                                                    <label for="select-${i}" class="umbrella-top">${i}</label>
-                                                </div>
-                                            `);
-                        }
 
-                        async function getReservedUmbrellas(db) {
+const reservedUmbrellas=getReservedUmbrellas();
+console.log("reserved umbrellas are :"+ reservedUmbrellas);
+    
+    async function getReservedUmbrellas() {
     const querySnapshot = await getDocs(collection(db, "reservations"));
     let reserved = new Set();
 
