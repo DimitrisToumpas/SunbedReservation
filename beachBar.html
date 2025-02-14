@@ -49,6 +49,7 @@
 
                 // If umbrella is reserved, disable checkbox and style accordingly
                 if (reservedUmbrellas.includes(i)) {
+                    console.log("Δεν ειναι διαθέσημη η:"+i);
                     checkbox.disabled = true; // Disable the checkbox
                     const label = document.createElement("label");
                     label.setAttribute("for", `select-${i}`);
@@ -58,6 +59,7 @@
                     umbrellaDiv.appendChild(checkbox);
                     umbrellaDiv.appendChild(label);
                 } else {
+                    console.log("Eιναι διαθέσημη η:"+i);
                     const label = document.createElement("label");
                     label.setAttribute("for", `select-${i}`);
                     label.classList.add("umbrella-top");
