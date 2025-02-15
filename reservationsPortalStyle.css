@@ -76,7 +76,7 @@ tbody tr:hover {
 @media screen and (max-width: 768px) {
     .table-container {
         width: 100%;
-        max-height: 300px; /* Adjust for mobile */
+        max-height: 90%; /* Adjust for mobile */
     }
 
     th, td {
