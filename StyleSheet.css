@@ -148,7 +148,7 @@ button {
 }*/
 
 button {
-    background-color: #f4a261; /* Warm orange tone for contrast */
+    background-color: #b09a6d; /* Warm orange tone for contrast */
     color: #3c3436; /* Dark brown text for a sophisticated look */
     font-size: 1.2em;
     font-weight: bold; /* Improve readability */
@@ -161,7 +161,7 @@ button {
 }
 
 button:hover {
-    background-color: #b09a6d; /* Darker shade for hover effect */
+    background-color: #998762; /* Darker shade for hover effect */
     transform: scale(1.05); /* Slight scaling effect on hover */
 }
 
