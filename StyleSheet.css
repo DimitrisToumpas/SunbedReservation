@@ -101,7 +101,7 @@ h1 {
 
 
 
-/* PulmTree icon added to the top of the body */
+/* PulmTree icon added to the top of the body 
 .palm-tree {
     content: url('https://www.svgrepo.com/show/295665/palm-tree-island.svg'); /* palm tree icon URL */
     position: absolute;
@@ -111,7 +111,7 @@ h1 {
     width: 80%; /* Adjust the size of the icon */
     height: 80%; /* Adjust the size of the icon */
     z-index: 1; /* Make sure it is above the background */
-}
+} */
 
 /* Form elements styling */
 label {
