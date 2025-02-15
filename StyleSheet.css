@@ -135,7 +135,7 @@ select {
     background-color: #d9d7d7;
     color: #333;
 }
-
+/*old
 button {
     background-color: #3c3436; 
     color: white;
@@ -145,55 +145,39 @@ button {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}*/
+
+button {
+    background-color: #f4a261; /* Warm orange tone for contrast */
+    color: #3c3436; /* Dark brown text for a sophisticated look */
+    font-size: 1.2em;
+    font-weight: bold; /* Improve readability */
+    padding: 14px 30px;
+    border: none; /* Remove border for a cleaner look */
+    border-radius: 8px; /* Slightly more rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add subtle depth */
 }
 
+button:hover {
+    background-color: #e76f51; /* Darker shade for hover effect */
+    transform: scale(1.05); /* Slight scaling effect on hover */
+}
+
+button:active {
+    background-color: #d1493a; /* Even darker shade when clicked */
+    transform: scale(0.98); /* Slight press effect */
+}
+/*Old
     button:hover {
-        background-color: #363f50; /* Lighter shade for hover effect */
+        background-color: #363f50; 
     }
 
     button:active {
-        background-color: #768ba3; /* Darker shade for active button */
+        background-color: #768ba3; 
     }
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: #fff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-thead {
-    position: sticky;
-    background-color: #231d22;
-    color: #ffffff;
-    font-weight: 600;
-}
-
-th {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-    color: #d9d7d7;
-}
-
-
-td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-    color: #3c3436;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tbody tr:hover {
-    background-color: #d6e4f0;
-    cursor: pointer;
-}
+*/
 
 /* Style for the form when it’s in focus */
 input:focus,
