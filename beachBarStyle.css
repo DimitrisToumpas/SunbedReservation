@@ -14,15 +14,6 @@ body {
     flex-direction: column;
 }
 
-/* Sea (top section) */
-/*.sea {  */
-  /*  background: url('sea.jpg') no-repeat center center;
-    /* background: #3b9dd9; */
-   /* height: 20vh;  */
-  /*  position: relative;  */
-   /* overflow: hidden;  */ 
-/* }  */
-
 /* sea.css */
 .sea {
   height: 20vh;
@@ -162,16 +153,16 @@ flex: 1;
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: #04AA6D;
+  background-color: #b09a6d;
   border: none;
   border-radius: 15px;
   box-shadow: 0 9px #999;
 }
 
-.button:hover {background-color: #3e8e41}
+.button:hover {background-color: #998762}
 
 .button:active {
-  background-color: #3e8e41;
+  background-color: #b4a78d;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
 }
