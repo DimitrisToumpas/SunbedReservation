@@ -84,3 +84,39 @@ tbody tr:hover {
         padding: 8px;
     }
 }
+
+
+/* Selected Row */
+tbody tr.selected {
+    background-color: rgba(255, 0, 0, 0.2);
+}
+
+/* Editable Cells */
+td.editable {
+    cursor: pointer;
+    background-color: #f9f9f9;
+}
+
+td.editable:focus {
+    outline: none;
+    background-color: #ffffcc;
+}
+
+/* Delete Button */
+#deleteBtn {
+    display: none;
+    margin: 10px auto;
+    padding: 10px 15px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    width: fit-content;
+}
+
+#deleteBtn:hover {
+    background: darkred;
+}
