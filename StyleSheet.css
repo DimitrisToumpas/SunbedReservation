@@ -166,7 +166,7 @@ button:hover {
 }
 
 button:active {
-    background-color: #d1493a; /* Even darker shade when clicked */
+    background-color: #b4a78d; /* Even darker shade when clicked */
     transform: scale(0.98); /* Slight press effect */
 }
 /*Old
@@ -190,7 +190,7 @@ select:focus {
 .footer {
     margin-top: 20px;
     font-size: 0.9em;
-    color: #fae19b;
+    color: #b6aa90;
     text-align: right;
     padding-right: 20px;
     position: fixed;
