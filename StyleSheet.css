@@ -103,14 +103,14 @@ h1 {
 
 /* PulmTree icon added to the top of the body 
 .palm-tree {
-    content: url('https://www.svgrepo.com/show/295665/palm-tree-island.svg'); /* palm tree icon URL */
+    content: url('https://www.svgrepo.com/show/295665/palm-tree-island.svg');
     position: absolute;
-    top: 20%; /* Position the icon at the top */
-    left: 20%; /* Center the icon horizontally */
-    transform: translateX(-50%); /* Center the icon horizontally */
-    width: 80%; /* Adjust the size of the icon */
-    height: 80%; /* Adjust the size of the icon */
-    z-index: 1; /* Make sure it is above the background */
+    top: 20%; 
+    left: 20%;
+    transform: translateX(-50%); 
+    width: 80%;
+    height: 80%;
+    z-index: 1; 
 } */
 
 /* Form elements styling */
