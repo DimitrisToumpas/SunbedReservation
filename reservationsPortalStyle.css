@@ -47,11 +47,17 @@ tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-/* Table Data Cells */
+/* Table Data Cells with Borders */
 th, td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;  /* Add right border to create column separation */
+}
+
+/* Remove the right border from the last column to avoid double borders */
+th:last-child, td:last-child {
+    border-right: none;
 }
 
 /* Hover Effect */
