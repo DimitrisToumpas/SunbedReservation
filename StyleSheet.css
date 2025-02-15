@@ -161,12 +161,12 @@ button {
 }
 
 button:hover {
-    background-color: #e76f51; /* Darker shade for hover effect */
+    background-color: #b09a6d; /* Darker shade for hover effect */
     transform: scale(1.05); /* Slight scaling effect on hover */
 }
 
 button:active {
-    background-color: #b4a78d; /* Even darker shade when clicked */
+    background-color: #b4a78d; 
     transform: scale(0.98); /* Slight press effect */
 }
 /*Old
