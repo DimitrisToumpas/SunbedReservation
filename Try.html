@@ -2,66 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="StyleSheet.css">
+    <link rel="stylesheet" href="reservations PortalStyle.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservations Table</title>
     <script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore-compat.js"></script>
-<style>
-
-        .table-container {
-            width: 90%;
-            max-width: 800px;
-            height: 400px; /* Adjust height as needed */
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            margin-top: 20px;
-        }
-table {
-    width: 80%;
-    margin: 0 auto;
-    border-collapse: collapse;
-    background: #fff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-thead {
-    background-color: #231d22;
-    color: #ffffff;
-    font-weight: 600;
-}
-
-th {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-    color: #d9d7d7;
-}
-
-
-td {
-    padding: 12px;
-    border: 1px solid #ddd;
-    text-align: center;
-    color: #3c3436;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tbody tr:hover {
-    background-color: #d6e4f0;
-    cursor: pointer;
-}
-</style>        
 </head>
 <body>
 
-    <h1>Reservations Table</h1>
-    
     <div class="table-container">
         <table>
             <thead>
@@ -70,55 +18,99 @@ tbody tr:hover {
                     <th>Room</th>
                     <th>Date</th>
                     <th>Time</th>
+                    <th>Umbrellas</th>
                 </tr>
             </thead>
             <tbody id="reservationsTable"></tbody>
         </table>
     </div>
 
+    <button id="deleteBtn" style="display:none;">Delete Selected</button>
+
     <script type="module">
-        // Your Firebase configuration
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-app-compat.js";
+        import { getFirestore, collection, getDocs, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore-compat.js";
+
+        // Firebase Config (Replace with your actual config)
         const firebaseConfig = {
-            apiKey: "AIzaSyDqAa4PoaB7vyQ9FE0WQFDe3Nli7nC1wJA",
-            authDomain: "reservations-78188.firebaseapp.com",
-            projectId: "reservations-78188",
-            storageBucket: "reservations-78188.firebasestorage.app",
-            messagingSenderId: "924388919428",
-            appId: "1:924388919428:web:e888d91364fe96cf34dad1"
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
         };
 
         // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.firestore();
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
 
         const tableBody = document.getElementById("reservationsTable");
+        let selectedRow = null;
+        let selectedDocId = null;
 
-        async function fetchReservations() {
-            try {
-                const querySnapshot = await db.collection("reservations").get();
-                querySnapshot.forEach((doc) => {
-                    const data = doc.data();
+        async function loadReservations() {
+            tableBody.innerHTML = "";
+            const querySnapshot = await getDocs(collection(db, "reservations"));
+            
+            querySnapshot.forEach((doc) => {
+                const data = doc.data();
+                const row = document.createElement("tr");
+                row.setAttribute("data-id", doc.id); // Store Firestore doc ID
+                
+                row.innerHTML = `
+                    <td>${data.name}</td>
+                    <td>${data.room}</td>
+                    <td>${data.date}</td>
+                    <td>${data.time}</td>
+                    <td contenteditable="true" class="editable">${data.umbrellas}</td>
+                `;
 
-                    // Create a new row for each reservation
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
-                        <td>${data.name}</td>
-                        <td>${data.room}</td>
-                        <td>${data.date}</td>
-                        <td>${data.time}</td>
-                    `;
-
-                    tableBody.appendChild(row);
+                // Long press event to select row
+                let pressTimer;
+                row.addEventListener("mousedown", (e) => {
+                    pressTimer = setTimeout(() => {
+                        selectRow(row, doc.id);
+                    }, 500); // 500ms long press
                 });
-            } catch (error) {
-                console.error("Error loading reservations:", error);
-            }
+
+                row.addEventListener("mouseup", () => clearTimeout(pressTimer));
+                row.addEventListener("mouseleave", () => clearTimeout(pressTimer));
+
+                // Event listener for updating the Umbrellas value
+                row.querySelector(".editable").addEventListener("blur", async function () {
+                    const newValue = this.innerText.trim();
+                    await updateDoc(doc(db, "reservations", doc.id), { umbrellas: newValue });
+                });
+
+                tableBody.appendChild(row);
+            });
         }
 
-        fetchReservations();
+        function selectRow(row, docId) {
+            if (selectedRow) {
+                selectedRow.classList.remove("selected");
+            }
+            selectedRow = row;
+            selectedDocId = docId;
+            selectedRow.classList.add("selected");
+
+            document.getElementById("deleteBtn").style.display = "block";
+        }
+
+        document.getElementById("deleteBtn").addEventListener("click", async function () {
+            if (selectedDocId) {
+                await deleteDoc(doc(db, "reservations", selectedDocId));
+                loadReservations();
+                selectedRow = null;
+                selectedDocId = null;
+                this.style.display = "none";
+            }
+        });
+
+        loadReservations();
     </script>
 
     <div class="footer">Copyrights © 2025 Toumpas Dimitris</div>
-
 </body>
 </html>
