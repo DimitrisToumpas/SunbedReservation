@@ -1,31 +1,34 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
+/* Ensure body fits the screen exactly without scrolling */
+html, body {
+    height: 100vh;  /* Full viewport height */
     margin: 0;
     padding: 0;
+    overflow: hidden;  /* Prevent body from scrolling */
+    font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     color: #333;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Table Container */
+/* Table Container should be scrollable within the fixed screen */
 .table-container {
-    width: 95%;
+    width: 100%;
+    height: 100vh;  /* Take full screen height */
     max-width: 1200px;
-    margin: 20px auto;
     background: #fff;
     border-radius: 10px;
-    overflow-y: auto;  /* Enables vertical scrolling */
+    overflow-y: auto;  /* Enable vertical scrolling inside the container */
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    max-height: 90%; /* Adjust as needed */
 }
 
-/* Table Styling */
+/* Ensure table takes full width */
 table {
     width: 100%;
     border-collapse: collapse;
 }
 
-/* Table Header */
+/* Keep the table header sticky */
 thead {
     background-color: #007bff;
     color: white;
@@ -34,15 +37,8 @@ thead {
     z-index: 100;
 }
 
-/* Table Header Row */
-thead tr {
-    display: flex;
-}
-
-/* Table Body Rows */
+/* Table rows */
 tbody tr {
-    display: flex;
-    background: #fff;
     transition: background 0.3s;
 }
 
@@ -53,7 +49,6 @@ tbody tr:nth-child(even) {
 
 /* Table Data Cells */
 th, td {
-    flex: 1;
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #ddd;
@@ -63,28 +58,6 @@ th, td {
 tbody tr:hover {
     background-color: #f1f1f1;
 }
-
-/* Footer */
-.footer {
-    text-align: center;
-    padding: 10px;
-    font-size: 14px;
-    color: #666;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
-    .table-container {
-        width: 100%;
-        max-height: 90%; /* Adjust for mobile */
-    }
-
-    th, td {
-        font-size: 14px;
-        padding: 8px;
-    }
-}
-
 
 /* Selected Row */
 tbody tr.selected {
@@ -112,11 +85,22 @@ td.editable:focus {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    display: block;
     text-align: center;
     width: fit-content;
 }
 
 #deleteBtn:hover {
     background: darkred;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .table-container {
+        border-radius: 0;
+    }
+
+    th, td {
+        font-size: 14px;
+        padding: 8px;
+    }
 }
