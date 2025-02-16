@@ -74,8 +74,8 @@ row.addEventListener("touchcancel", () => clearTimeout(pressTimer));
 
                 // Event listener for updating the Umbrellas value
                 row.querySelector(".editable").addEventListener("blur", async function () {
-                    const editRow = this.closest("tr");
-                    selectRow(editRow);
+                    selectRow(row);
+                    console.log("to id einai: " + row.getAttribute('data-id'));
                     const newValue = this.innerText.trim();
                    await setDoc(doc(db, "reservations",selectedDocId ), {
                      umbrellas: newValue
