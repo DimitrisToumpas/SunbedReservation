@@ -1,117 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="reservationsPortalStyle.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservations Portal</title>
-</head>
-<body>
+import { db } from "./firebase.js";
+import { collection, setDoc, getDocs, deleteDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
 
-    <div class="table-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Room</th>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Umbrellas</th>
-                </tr>
-            </thead>
-            <tbody id="reservationsTable"></tbody>
-        </table>
-    </div>
+const tableBody = document.getElementById("reservationsTable");
+const deleteBtn = document.getElementById("deleteBtn");
+let selectedRows = [];  // Store selected rows
+let selectedDocIds = []; // Store selected document IDs
 
-    <button id="deleteBtn" style="display:none;">Delete Selected</button>
+async function loadReservations() {
+    tableBody.innerHTML = "";
+    selectedRows = [];
+    selectedDocIds = [];
+    deleteBtn.style.display = "none"; // Hide delete button initially
 
-    <script type="module">
-        import { db } from "./firebase.js";
-    import { collection, setDoc, getDocs, deleteDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
+    const querySnapshot = await getDocs(collection(db, "reservations"));
 
+    querySnapshot.forEach((reservation) => {
+        const data = reservation.data();
+        const row = document.createElement("tr");
+        row.setAttribute("data-id", reservation.id); // Store Firestore doc ID
 
-        const tableBody = document.getElementById("reservationsTable");
-        let selectedRow = null;
-        let selectedDocId = null;
+        row.innerHTML = `
+            <td>${data.name}</td>
+            <td>${data.room}</td>
+            <td>${data.date}</td>
+            <td>${data.time}</td>
+            <td contenteditable="true" class="editable">${data.umbrellas}</td>
+        `;
 
-        async function loadReservations() {
-            tableBody.innerHTML = "";
-            const querySnapshot = await getDocs(collection(db, "reservations"));
-            
-            querySnapshot.forEach((reservation) => {
-                const data = reservation.data();
-                const row = document.createElement("tr");
-                row.setAttribute("data-id", reservation.id); // Store Firestore doc ID
-                
-                row.innerHTML = `
-                    <td>${data.name}</td>
-                    <td>${data.room}</td>
-                    <td>${data.date}</td>
-                    <td>${data.time}</td>
-                    <td contenteditable="true" class="editable">${data.umbrellas}</td>
-                `;
+        // Handle row selection
+        let pressTimer;
+        function startPressTimer() {
+            pressTimer = setTimeout(() => {
+                toggleRowSelection(row);
+            }, 500); // 500ms long press
+        }
 
-                // Long press event to select row
-                let pressTimer;
-                row.addEventListener("mousedown", (e) => {
-                    pressTimer = setTimeout(() => {
-                        selectRow(row);
-                    }, 500); // 500ms long press
-                });
+        function clearPressTimer() {
+            clearTimeout(pressTimer);
+        }
 
-                row.addEventListener("mouseup", () => clearTimeout(pressTimer));
-                row.addEventListener("mouseleave", () => clearTimeout(pressTimer));
+        row.addEventListener("mousedown", startPressTimer);
+        row.addEventListener("mouseup", clearPressTimer);
+        row.addEventListener("mouseleave", clearPressTimer);
 
-// Add touch event for mobile
-row.addEventListener("touchstart", (e) => {
-    pressTimer = setTimeout(() => {
-        selectRow(row);
-    }, 500); // 500ms long press
-});
+        row.addEventListener("touchstart", startPressTimer);
+        row.addEventListener("touchend", clearPressTimer);
+        row.addEventListener("touchcancel", clearPressTimer);
 
-row.addEventListener("touchend", () => clearTimeout(pressTimer));
-row.addEventListener("touchcancel", () => clearTimeout(pressTimer));
-
-                // Event listener for updating the Umbrellas value
-                row.querySelector(".editable").addEventListener("blur", async function () {
-                    selectRow(row);
-                    console.log("to id einai: " + row.getAttribute('data-id'));
-                    let newValue = this.innerText.trim().split(' '); 
-                   await updateDoc(doc(db, "reservations",selectedDocId ), {
-                     umbrellas: newValue
-                     });
-                     loadReservations();
-                });
-
-                tableBody.appendChild(row);
+        // Event listener for updating the Umbrellas value
+        row.querySelector(".editable").addEventListener("blur", async function () {
+            let newValue = this.innerText.trim().split(' ');
+            await updateDoc(doc(db, "reservations", row.getAttribute('data-id')), {
+                umbrellas: newValue
             });
-        }
-
-        function selectRow(row) {
-            selectedRow = row;
-            if (selectedRow) {
-                const docId =row.getAttribute('data-id');
-                selectedRow.classList.remove("selected");
-                selectedDocId = docId;
-                selectedRow.classList.add("selected");
-            }
-            
-            document.getElementById("deleteBtn").style.display = "block";
-        }
-
-        document.getElementById("deleteBtn").addEventListener("click", async function () {
-            if (selectedDocId) {
-                await deleteDoc(doc(db, "reservations", selectedDocId));
-                loadReservations();
-                selectedRow = null;
-                selectedDocId = null;
-                this.style.display = "none";
-            }
+            loadReservations();
         });
 
-        loadReservations();
-    </script>
+        tableBody.appendChild(row);
+    });
+}
 
-    <div class="footer">Copyrights © 2025 Toumpas Dimitris</div>
-</body>
-</html>
+// Toggle row selection
+function toggleRowSelection(row) {
+    const docId = row.getAttribute('data-id');
+
+    if (selectedDocIds.includes(docId)) {
+        // Deselect row
+        selectedDocIds = selectedDocIds.filter(id => id !== docId);
+        selectedRows = selectedRows.filter(r => r !== row);
+        row.classList.remove("selected");
+    } else {
+        // Select row
+        selectedDocIds.push(docId);
+        selectedRows.push(row);
+        row.classList.add("selected");
+    }
+
+    // Show/hide delete button
+    deleteBtn.style.display = selectedDocIds.length > 0 ? "block" : "none";
+}
+
+// Delete all selected rows
+deleteBtn.addEventListener("click", async function () {
+    if (selectedDocIds.length > 0) {
+        for (let docId of selectedDocIds) {
+            await deleteDoc(doc(db, "reservations", docId));
+        }
+        loadReservations(); // Refresh table
+    }
+});
+
+loadReservations();
