@@ -73,11 +73,11 @@ row.addEventListener("touchend", () => clearTimeout(pressTimer));
 row.addEventListener("touchcancel", () => clearTimeout(pressTimer));
 
                 // Event listener for updating the Umbrellas value
-                const editRow = row.querySelector(".editable").addEventListener("blur", async function () {
+                row.querySelector(".editable").addEventListener("blur", async function () {
+                    const editRow = this; // 'this' refers to the element that triggered the event
                     selectRow(editRow);
                     const newValue = this.innerText.trim();
-                    const docId = editRow.getAttribute('data-id');
-                   await setDoc(doc(db, "reservations",docId ), {
+                   await setDoc(doc(db, "reservations",selectedDocId ), {
                      umbrellas: newValue
                      });
                 });
