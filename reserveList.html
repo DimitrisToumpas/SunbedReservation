@@ -41,7 +41,7 @@
             querySnapshot.forEach((reservation) => {
                 const data = reservation.data();
                 const row = document.createElement("tr");
-                row.setAttribute("data-id", data.id); // Store Firestore doc ID
+                row.setAttribute("data-id", reservation.id); // Store Firestore doc ID
                 
                 row.innerHTML = `
                     <td>${data.name}</td>
