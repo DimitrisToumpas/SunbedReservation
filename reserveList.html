@@ -38,8 +38,8 @@
             tableBody.innerHTML = "";
             const querySnapshot = await getDocs(collection(db, "reservations"));
             
-            querySnapshot.forEach((doc) => {
-                const data = doc.data();
+            querySnapshot.forEach((reservation) => {
+                const data = reservation.data();
                 const row = document.createElement("tr");
                 row.setAttribute("data-id", doc.id); // Store Firestore doc ID
                 
