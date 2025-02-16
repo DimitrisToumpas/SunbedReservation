@@ -27,7 +27,7 @@
 
     <script type="module">
         import { db } from "./firebase.js";
-    import { collection, setDoc, getDocs, deleteDoc ,doc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
+    import { collection, setDoc, getDocs, deleteDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
 
 
         const tableBody = document.getElementById("reservationsTable");
@@ -77,9 +77,10 @@ row.addEventListener("touchcancel", () => clearTimeout(pressTimer));
                     selectRow(row);
                     console.log("to id einai: " + row.getAttribute('data-id'));
                     const newValue = this.innerText.trim();
-                   await setDoc(doc(db, "reservations",selectedDocId ), {
+                   await updateDoc(doc(db, "reservations",selectedDocId ), {
                      umbrellas: newValue
                      });
+                     loadReservations();
                 });
 
                 tableBody.appendChild(row);
