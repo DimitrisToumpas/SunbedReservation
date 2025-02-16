@@ -1,3 +1,47 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+
+<link rel="stylesheet" href="reservationsPortalStyle.css">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Reservations Portal</title>
+
+</head><body><div class="table-container">
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>Name</th>
+
+                <th>Room</th>
+
+                <th>Date</th>
+
+                <th>Time</th>
+
+                <th>Umbrellas</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody id="reservationsTable"></tbody>
+
+    </table>
+
+</div>
+
+
+
+<button id="deleteBtn" style="display:none;">Delete Selected</button>
+
+
+
+<script type="module">
+
 import { db } from "./firebase.js";
 import { collection, setDoc, getDocs, deleteDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
 
@@ -91,3 +135,9 @@ deleteBtn.addEventListener("click", async function () {
 });
 
 loadReservations();
+    
+
+
+</script>
+
+<div class="footer">Copyrights © 2025 Toumpas Dimitris</div>
