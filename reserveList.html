@@ -41,7 +41,7 @@
             querySnapshot.forEach((reservation) => {
                 const data = reservation.data();
                 const row = document.createElement("tr");
-                row.setAttribute("data-id", reservation.id); // Store Firestore doc ID
+                row.setAttribute("data-id", data.id); // Store Firestore doc ID
                 
                 row.innerHTML = `
                     <td>${data.name}</td>
@@ -62,6 +62,15 @@
                 row.addEventListener("mouseup", () => clearTimeout(pressTimer));
                 row.addEventListener("mouseleave", () => clearTimeout(pressTimer));
 
+// Add touch event for mobile
+row.addEventListener("touchstart", (e) => {
+    pressTimer = setTimeout(() => {
+        selectRow(row);
+    }, 500); // 500ms long press
+});
+
+row.addEventListener("touchend", () => clearTimeout(pressTimer));
+row.addEventListener("touchcancel", () => clearTimeout(pressTimer));
                 // Event listener for updating the Umbrellas value
                 row.querySelector(".editable").addEventListener("blur", async function () {
                     const newValue = this.innerText.trim();
