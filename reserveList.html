@@ -27,7 +27,9 @@
 
     <script type="module">
         import { db } from "./firebase.js";
-    import { collection, addDoc, getDocs, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
+    import { collection, addDoc, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
+    import { doc, deleteDoc } from "firebase/firestore";
+
 
 
         const tableBody = document.getElementById("reservationsTable");
@@ -55,7 +57,7 @@
                 let pressTimer;
                 row.addEventListener("mousedown", (e) => {
                     pressTimer = setTimeout(() => {
-                        selectRow(row, doc.id);
+                        selectRow(row);
                     }, 500); // 500ms long press
                 });
 
@@ -65,21 +67,25 @@
                 // Event listener for updating the Umbrellas value
                 row.querySelector(".editable").addEventListener("blur", async function () {
                     const newValue = this.innerText.trim();
-                    await updateDoc(doc(db, "reservations", doc.id), { umbrellas: newValue });
+                    const docId = row.getAttribute('data-id');
+                   await setDoc(doc(db, "reservations",docId ), {
+                     umbrellas: newValue
+                     });
                 });
 
                 tableBody.appendChild(row);
             });
         }
 
-        function selectRow(row, docId) {
-            if (selectedRow) {
-                selectedRow.classList.remove("selected");
-            }
+        function selectRow(row) {
             selectedRow = row;
-            selectedDocId = docId;
-            selectedRow.classList.add("selected");
-
+            if (selectedRow) {
+                const docID =row.getAttribute('data-id');
+                selectedRow.classList.remove("selected");
+                selectedDocId = docId;
+                selectedRow.classList.add("selected");
+            }
+            
             document.getElementById("deleteBtn").style.display = "block";
         }
 
