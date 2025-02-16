@@ -134,10 +134,21 @@ deleteBtn.addEventListener("click", async function () {
     }
 });
 
+  let touchStartY = 0;
+
+window.addEventListener("touchstart", (e) => {
+    touchStartY = e.touches[0].clientY;
+});
+
+window.addEventListener("touchend", (e) => {
+    let touchEndY = e.changedTouches[0].clientY;
+    if (touchEndY - touchStartY > 100) {  // Detects a downward swipe
+        window.location.reload(); // Fully reloads the page
+    }
+});  
+
 loadReservations();
     
-
-
 </script>
 
 <div class="footer">Copyrights © 2025 Toumpas Dimitris</div>
