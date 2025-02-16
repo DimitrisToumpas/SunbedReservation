@@ -76,7 +76,7 @@ row.addEventListener("touchcancel", () => clearTimeout(pressTimer));
                 row.querySelector(".editable").addEventListener("blur", async function () {
                     selectRow(row);
                     console.log("to id einai: " + row.getAttribute('data-id'));
-                    const newValue = this.innerText.trim();
+                    let newValue = this.innerText.trim().split(' '); 
                    await updateDoc(doc(db, "reservations",selectedDocId ), {
                      umbrellas: newValue
                      });
