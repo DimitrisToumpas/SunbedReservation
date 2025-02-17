@@ -107,17 +107,83 @@ async function loadReservations() {
             await updateDoc(doc(db, "reservations", row.getAttribute('data-id')), {
                 umbrellas: newValue
             });
-            loadReservations();
         });
 
         // Call the `addNotes` function when the user clicks/taps out of the `notesField`
         notesField.addEventListener('blur', function() {
-            addNotes(selectedRows);
+            addNotes(selectedRows);  // Call addNotes function after user finishes editing notes
         });
 
         tableBody.appendChild(row);
     });
 }
+
+async function addNotes(selectedRows) {
+    let newNotes = notesField.value;
+    try {
+        // Update the notes for each selected row
+        for (const row of selectedRows) {
+            let docId = row.getAttribute('data-id');
+            await updateDoc(doc(db, "reservations", docId), {
+                notes: newNotes
+            });
+        }
+
+        // Once notes are updated, refresh the table
+        loadReservations();  // Load reservations once after updating notes
+
+    } catch (error) {
+        console.error("Error updating notes", error);
+    }
+}
+
+// Toggle row selection
+function toggleRowSelection(row) {
+    const docId = row.getAttribute('data-id');
+
+    if (selectedDocIds.includes(docId)) {
+        // Deselect row
+        selectedDocIds = selectedDocIds.filter(id => id !== docId);
+        selectedRows = selectedRows.filter(r => r !== row);
+        row.classList.remove("selected");
+    } else {
+        // Select row
+        selectedDocIds.push(docId);
+        selectedRows.push(row);
+        row.classList.add("selected");
+    }
+
+    // Show/hide delete button and notes field
+    deleteBtn.style.display = selectedDocIds.length > 0 ? "block" : "none";
+    notesField.style.display = selectedDocIds.length > 0 ? "block" : "none";
+}
+
+// Delete selected rows
+deleteBtn.addEventListener("click", async function () {
+    if (selectedDocIds.length > 0) {
+        for (let docId of selectedDocIds) {
+            await deleteDoc(doc(db, "reservations", docId));
+        }
+        loadReservations(); // Refresh table
+    }
+});
+
+
+
+window.addEventListener("touchstart", (e) => {
+    let touchStartY = 0;
+    touchStartY = e.touches[0].clientY;
+});
+
+window.addEventListener("touchend", (e) => {
+    let touchEndY = e.changedTouches[0].clientY;
+    if (touchEndY - touchStartY > 100) {  // Detects a downward swipe
+        window.location.reload(); // Fully reloads the page
+    }
+});  
+
+loadReservations();
+
 
 
 // Toggle row selection
