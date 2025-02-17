@@ -112,7 +112,7 @@ async function loadReservations() {
         
         addNotes(selectedRows);
         });
-        loadReservations();
+        
         tableBody.appendChild(row);
     });
 }
@@ -149,7 +149,7 @@ async function addNotes(selectedRows) {
                 notes: newNotes
             });
         }
-            //loadReservations();
+            loadReservations();
 
     }catch(error)
     {
