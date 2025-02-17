@@ -104,7 +104,7 @@ async function loadReservations() {
             await updateDoc(doc(db, "reservations", row.getAttribute('data-id')), {
                 umbrellas: newValue
             });
-            loadReservations();
+            //loadReservations();
         });
 
         // Call the `addNotes` function when the user clicks/taps out of the `notesField`
@@ -112,7 +112,7 @@ async function loadReservations() {
         
         addNotes(selectedRows);
         });
-
+        loadReservations();
         tableBody.appendChild(row);
     });
 }
@@ -149,7 +149,7 @@ async function addNotes(selectedRows) {
                 notes: newNotes
             });
         }
-            loadReservations();
+            //loadReservations();
 
     }catch(error)
     {
