@@ -142,7 +142,7 @@ async function addNotes(selectedRows) {
     let newNotes = notesField.value;
     try
     {
-          for (const row of selectedRows) {
+          for (const row of selectedRows)
         {
           let docId = row.getAttribute('data-id');
           await updateDoc(doc(db, "reservations", docId), {
