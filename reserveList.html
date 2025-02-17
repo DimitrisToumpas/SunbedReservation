@@ -57,11 +57,14 @@ const notesField = document.getElementById("notesTextField");
 let selectedRows = [];  // Store selected rows
 let selectedDocIds = []; // Store selected document IDs
 
+
 async function loadReservations() {
-    tableBody.innerHTML = "";
-    //selectedRows = [];
-    //selectedDocIds = [];
-    deleteBtn.style.display = "none"; // Hide delete button initially
+    // Clear the table body before reloading data
+    tableBody.innerHTML = ""; 
+
+    // Hide the delete button and notes field initially
+    deleteBtn.style.display = "none";
+    notesField.style.display = "none";
 
     const querySnapshot = await getDocs(collection(db, "reservations"));
 
@@ -109,13 +112,13 @@ async function loadReservations() {
 
         // Call the `addNotes` function when the user clicks/taps out of the `notesField`
         notesField.addEventListener('blur', function() {
-        
-        addNotes(selectedRows);
+            addNotes(selectedRows);
         });
-        
+
         tableBody.appendChild(row);
     });
 }
+
 
 // Toggle row selection
 function toggleRowSelection(row) {
