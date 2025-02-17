@@ -103,7 +103,7 @@ async function loadReservations() {
             await updateDoc(doc(db, "reservations", row.getAttribute('data-id')), {
                 umbrellas: newValue
             });
-            loadReservations();
+            window.location.reload();
         });
 
         // Call the `addNotes` function when the user clicks/taps out of the `notesField`
