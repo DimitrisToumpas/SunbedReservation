@@ -34,10 +34,11 @@
         console.log("Reserved Umbrellas are : "+ reservedUmbrellas);
         // Generate umbrellas dynamically based on the reserved umbrellas
         const umbrellaGrid = document.getElementById("umbrella-grid"); // Get the umbrella grid element
+        const umbrellasQuantity = 20; // I can choose how many umbrellas are displayed
         // Make sure the umbrellaGrid element exists before adding content
         if (umbrellaGrid) 
         {
-            for (let i = 1; i <= 20; i++) 
+            for (let i = 1; i <= umbrellasQuantity; i++) 
             {
                   const umbrellaDiv = document.createElement("div");
                 umbrellaDiv.classList.add("umbrella");
@@ -107,8 +108,7 @@
 
             console.log("Document written with ID: ", docRef.id);
             alert("Reservation successful!");
-//location.reload();
-window.location.href = "index.html";
+            window.location.href = "index.html";
         } catch (error) {
             console.error("Error adding document: ", error);
         }
@@ -121,7 +121,10 @@ window.location.href = "index.html";
             const umbrellaNumber = checkbox.id.split("-")[1]; // Extract the number from 'select-X'
             selectedUmbrellas.push(umbrellaNumber);
         });
-
+        if (selectedUmbrellas.length>2){
+            alert("You can only choose up to 2 umbrellas.")
+            return false;
+        }
         if (selectedUmbrellas.length === 0) {
             alert("Please select at least one umbrella.");
             return false;

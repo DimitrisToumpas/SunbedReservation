@@ -1,12 +1,17 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
 
+    <head>
+        <meta charset="UTF-8">
 <link rel="stylesheet" href="reservationsPortalStyle.css">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Reservations Portal</title>
 
-</head><body><div class="table-container">
+</head>
+
+<body>
+    <div class="table-container">
 
     <table>
 
@@ -37,8 +42,9 @@
 
 
 <button id="deleteBtn" style="display:none;">Delete Selected</button>
+<textarea id="notesTextField" style="display:none;">Notes</textarea>
 
-
+<div class="footer">Copyrights © 2025 Toumpas Dimitris</div>
 
 <script type="module">
 
@@ -47,6 +53,7 @@ import { collection, setDoc, getDocs, deleteDoc, updateDoc, doc } from "https://
 
 const tableBody = document.getElementById("reservationsTable");
 const deleteBtn = document.getElementById("deleteBtn");
+const notesField = document.getElementById("notesTextField");
 let selectedRows = [];  // Store selected rows
 let selectedDocIds = []; // Store selected document IDs
 
@@ -100,6 +107,12 @@ async function loadReservations() {
             loadReservations();
         });
 
+        // Call the `addNotes` function when the user clicks/taps out of the `notesField`
+        notesField.addEventListener('blur', function() {
+        //const row = document.querySelector(`[data-id="${notesField.getAttribute('data-id')}"]`);
+        addNotes(row);
+        });
+
         tableBody.appendChild(row);
     });
 }
@@ -122,7 +135,25 @@ function toggleRowSelection(row) {
 
     // Show/hide delete button
     deleteBtn.style.display = selectedDocIds.length > 0 ? "block" : "none";
+    notesField.style.display = selectedDocIds.length === 1 ? "block" : "none";
 }
+
+async function addNotes(row) {
+    const docId = row.getAttribute('data-id');
+    let newNotes = notesField.value;
+    try
+    {
+        await updateDoc(doc(db, "reservations", docId), {
+                notes: newNotes
+            });
+            loadReservations();
+
+    }catch(error)
+    {
+        console.error("error Updating Notes",error);
+    }
+} 
+ 
 
 // Delete all selected rows
 deleteBtn.addEventListener("click", async function () {
@@ -150,5 +181,5 @@ window.addEventListener("touchend", (e) => {
 loadReservations();
     
 </script>
-
-<div class="footer">Copyrights © 2025 Toumpas Dimitris</div>
+</body>
+</html>
