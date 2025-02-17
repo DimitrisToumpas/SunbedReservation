@@ -59,12 +59,10 @@ let selectedDocIds = []; // Store selected document IDs
 
 
 async function loadReservations() {
-    // Clear the table body before reloading data
-    tableBody.innerHTML = ""; 
-
-    // Hide the delete button and notes field initially
-    deleteBtn.style.display = "none";
-    notesField.style.display = "none";
+    tableBody.innerHTML = "";
+    //selectedRows = [];
+    //selectedDocIds = [];
+    deleteBtn.style.display = "none"; // Hide delete button initially
 
     const querySnapshot = await getDocs(collection(db, "reservations"));
 
@@ -107,13 +105,15 @@ async function loadReservations() {
             await updateDoc(doc(db, "reservations", row.getAttribute('data-id')), {
                 umbrellas: newValue
             });
+            loadReservations();
         });
 
         // Call the `addNotes` function when the user clicks/taps out of the `notesField`
         notesField.addEventListener('blur', function() {
-            addNotes(selectedRows);  // Call addNotes function after user finishes editing notes
+        
+        addNotes(selectedRows);
         });
-
+        
         tableBody.appendChild(row);
     });
 }
