@@ -59,8 +59,8 @@ let selectedDocIds = []; // Store selected document IDs
 
 async function loadReservations() {
     tableBody.innerHTML = "";
-    selectedRows = [];
-    selectedDocIds = [];
+    //selectedRows = [];
+    //selectedDocIds = [];
     deleteBtn.style.display = "none"; // Hide delete button initially
 
     const querySnapshot = await getDocs(collection(db, "reservations"));
@@ -109,8 +109,8 @@ async function loadReservations() {
 
         // Call the `addNotes` function when the user clicks/taps out of the `notesField`
         notesField.addEventListener('blur', function() {
-        //const row = document.querySelector(`[data-id="${notesField.getAttribute('data-id')}"]`);
-        addNotes(row);
+        
+        addNotes(selectedRows);
         });
 
         tableBody.appendChild(row);
@@ -138,14 +138,17 @@ function toggleRowSelection(row) {
     notesField.style.display = selectedDocIds.length === 1 ? "block" : "none";
 }
 
-async function addNotes(row) {
-    const docId = row.getAttribute('data-id');
+async function addNotes(selectedRows) {
     let newNotes = notesField.value;
     try
     {
-        await updateDoc(doc(db, "reservations", docId), {
+        foreach(row in selectedRows)
+        {
+          let docId = row.getAttribute('data-id');
+          await updateDoc(doc(db, "reservations", docId), {
                 notes: newNotes
             });
+        }
             loadReservations();
 
     }catch(error)
