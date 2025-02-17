@@ -24,3 +24,5 @@ Welcome to the **Umbrella Reservation for Beach Bars** project! This web-based a
 https://dimitristoumpas.github.io/SunbedReservation
 ### Management Page
 https://dimitristoumpas.github.io/SunbedReservation/reserveList
+### FIRESTORE
+https://console.firebase.google.com/project/reservations-78188/firestore/databases/-default-/data/~2Freservations~2F8RMh5pvINHx6IQjqDdrJ
