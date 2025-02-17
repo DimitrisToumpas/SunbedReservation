@@ -135,7 +135,7 @@ function toggleRowSelection(row) {
 
     // Show/hide delete button
     deleteBtn.style.display = selectedDocIds.length > 0 ? "block" : "none";
-    notesField.style.display = selectedDocIds.length === 1 ? "block" : "none";
+    notesField.style.display = selectedDocIds.length > 0 ? "block" : "none";
 }
 
 async function addNotes(selectedRows) {
