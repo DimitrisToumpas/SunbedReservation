@@ -60,8 +60,6 @@ let selectedDocIds = []; // Store selected document IDs
 
 async function loadReservations() {
     tableBody.innerHTML = "";
-    //selectedRows = [];
-    //selectedDocIds = [];
     deleteBtn.style.display = "none"; // Hide delete button initially
 
     const querySnapshot = await getDocs(collection(db, "reservations"));
@@ -130,7 +128,7 @@ async function addNotes(selectedRows) {
         }
 
         // Once notes are updated, refresh the table
-        loadReservations();  // Load reservations once after updating notes
+        window.location.reload();  // Load reservations once after updating notes
 
     } catch (error) {
         console.error("Error updating notes", error);
