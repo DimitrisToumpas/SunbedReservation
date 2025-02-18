@@ -117,3 +117,12 @@ td.editable:focus {
         padding: 8px;
     }
 }
+
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    color: #474242; 
+    text-align: left;
+  }
