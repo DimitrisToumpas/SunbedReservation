@@ -168,7 +168,7 @@ async function toggleRowSelection(row) {
      if (selectedDocIds.length === 1) {
         const selectedDocId = selectedDocIds[0]; 
         const reservationDoc = doc(db, "reservations", selectedDocId);
-        const reservationSnapshot = await getDoc(reservationDoc);
+        const reservationSnapshot = await getDocs(reservationDoc);
         const reservationData = reservationSnapshot.data();
 
         if (reservationData && reservationData.notes && reservationData.notes.trim() !== "") {
