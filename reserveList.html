@@ -167,8 +167,8 @@ function toggleRowSelection(row) {
      // If only one row is selected, fetch the notes and display them
      if (selectedDocIds.length === 1) {
         const selectedDocId = selectedDocIds[0]; 
-        const reservationDoc = doc(db, "reservations", toString(selectedDocId));
-        const reservationSnapshot = await getDoc(reservationDoc);
+        const reservationDoc = doc(db, "reservations", selectedDocId);
+        const reservationSnapshot = getDoc(reservationDoc);
         const reservationData = reservationSnapshot.data();
 
         if (reservationData && reservationData.notes && reservationData.notes.trim() !== "") {
@@ -177,7 +177,6 @@ function toggleRowSelection(row) {
     }
 }
 
-}
 
 // Delete selected rows
 deleteBtn.addEventListener("click", async function () {
