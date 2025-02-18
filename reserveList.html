@@ -164,6 +164,21 @@ function toggleRowSelection(row) {
     notesField.style.display = selectedDocIds.length > 0 ? "block" : "none";
     lightbulbIcon.style.display = selectedDocIds.length > 0 ? "block" : "none";
 
+     // If only one row is selected, fetch the notes and display them
+     if (selectedDocIds.length === 1) {
+        const docId = selectedDocIds[0].docId;
+        const reservationDoc = doc(db, "reservations", docId);
+        const reservationSnapshot = await getDoc(reservationDoc);
+        const reservationData = reservationSnapshot.data();
+
+        if (reservationData && reservationData.notes && reservationData.notes.trim() !== "") {
+            notesField.value = reservationData.notes;
+        } else {
+            notesField.value = "";  // Clear the notes field if no notes exist
+        }
+    }
+}
+
 }
 
 // Delete selected rows
