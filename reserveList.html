@@ -166,7 +166,7 @@ function toggleRowSelection(row) {
 
      // If only one row is selected, fetch the notes and display them
      if (selectedDocIds.length === 1) {
-        const docId = selectedDocIds[0].docId;
+        const docId = selectedDocIds[0];
         const reservationDoc = doc(db, "reservations", docId);
         const reservationSnapshot = await getDoc(reservationDoc);
         const reservationData = reservationSnapshot.data();
