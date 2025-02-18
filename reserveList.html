@@ -184,7 +184,7 @@ deleteBtn.addEventListener("click", async function () {
         for (let docId of selectedDocIds) {
             await deleteDoc(doc(db, "reservations", docId));
         }
-        loadReservations(); // Refresh table
+        window.location.reload(); // Refresh table
     }
 });
 
