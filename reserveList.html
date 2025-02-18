@@ -56,7 +56,7 @@
 <script type="module">
 
 import { db } from "./firebase.js";
-import { collection, setDoc, getDocs, deleteDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
+import { collection, setDoc, getDoc, getDocs, deleteDoc, updateDoc, doc } from "https://www.gstatic.com/firebasejs/11.3.0/firebase-firestore.js";
 
 const tableBody = document.getElementById("reservationsTable");
 const deleteBtn = document.getElementById("deleteBtn");
@@ -168,7 +168,7 @@ async function toggleRowSelection(row) {
      if (selectedDocIds.length === 1) {
         const selectedDocId = selectedDocIds[0]; 
         const reservationDoc = doc(db, "reservations", selectedDocId);
-        const reservationSnapshot = await getDocs(reservationDoc);
+        const reservationSnapshot = await getDoc(reservationDoc);
         const reservationData = reservationSnapshot.data();
 
         if (reservationData && reservationData.notes && reservationData.notes.trim() !== "") {
