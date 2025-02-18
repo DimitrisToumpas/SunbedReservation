@@ -144,7 +144,7 @@ async function addNotes(selectedRows) {
 }
 
 // Toggle row selection
-function toggleRowSelection(row) {
+async function toggleRowSelection(row) {
     const docId = row.getAttribute('data-id');
 
     if (selectedDocIds.includes(docId)) {
@@ -168,7 +168,7 @@ function toggleRowSelection(row) {
      if (selectedDocIds.length === 1) {
         const selectedDocId = selectedDocIds[0]; 
         const reservationDoc = doc(db, "reservations", selectedDocId);
-        const reservationSnapshot = getDoc(reservationDoc);
+        const reservationSnapshot = await getDoc(reservationDoc);
         const reservationData = reservationSnapshot.data();
 
         if (reservationData && reservationData.notes && reservationData.notes.trim() !== "") {
