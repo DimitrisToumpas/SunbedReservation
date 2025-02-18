@@ -173,9 +173,7 @@ function toggleRowSelection(row) {
 
         if (reservationData && reservationData.notes && reservationData.notes.trim() !== "") {
             notesField.value = reservationData.notes;
-        } else {
-            notesField.value = "";  // Clear the notes field if no notes exist
-        }
+        } 
     }
 }
 
