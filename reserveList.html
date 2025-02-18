@@ -40,13 +40,13 @@
 </div>
 
  <!-- Lightbulb Icon (off initially) -->
- <div id="lightbulbIcon" class="lightbulb" >
+ <div id="lightbulbIcon" class="lightbulb" style="display:none;" >
     💡
 </div>
 
 <!-- Notes Bubble -->
-<div id="notesBubble" class="notes-bubble" style="display:none;">
-    <textarea id="notesTextField" placeholder="Enter your notes here..."></textarea>
+<div id="notesBubble" class="notes-bubble" >
+    <textarea id="notesTextField" placeholder="Enter your notes here..." style="display:none;"></textarea>
 </div>
 
 <button id="deleteBtn" style="display:none;">Delete Selected</button>
@@ -61,6 +61,7 @@ import { collection, setDoc, getDocs, deleteDoc, updateDoc, doc } from "https://
 const tableBody = document.getElementById("reservationsTable");
 const deleteBtn = document.getElementById("deleteBtn");
 const notesField = document.getElementById("notesTextField");
+const lightbulbIcon = document.getElementById("lightbulbIcon");
 let selectedRows = [];  // Store selected rows
 let selectedDocIds = []; // Store selected document IDs
 
@@ -161,6 +162,8 @@ function toggleRowSelection(row) {
     // Show/hide delete button and notes field
     deleteBtn.style.display = selectedDocIds.length > 0 ? "block" : "none";
     notesField.style.display = selectedDocIds.length > 0 ? "block" : "none";
+    lightbulbIcon.style.display = selectedDocIds.length > 0 ? "block" : "none";
+
 }
 
 // Delete selected rows
