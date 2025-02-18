@@ -88,10 +88,23 @@ td.editable:focus {
     background-color: #ffffcc;
 }
 
+.lightbulb{
+    margin-top: 10px; 
+}
+
+.notes-bubble{
+
+    margin-top: 5px;  /* Adjust to add space between the table and the text div */
+
+}
+
 /* Delete Button */
 #deleteBtn {
     display: none;
-    margin: 10px auto;
+    position: absolute;
+    right: 0;  
+    top: 80%;  /* Position button below the table-container */
+    margin-top: 36px;  /* Add extra space between table-container and button */ 
     padding: 10px 15px;
     background: red;
     color: white;
@@ -105,6 +118,7 @@ td.editable:focus {
 #deleteBtn:hover {
     background: darkred;
 }
+
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
