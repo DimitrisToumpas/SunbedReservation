@@ -206,9 +206,27 @@ window.addEventListener("touchend", (e) => {
     }
 });  
 
-printBtn.addEventListener("click", async function ()
-{
+printBtn.addEventListener("click", function () {
+    let table = document.querySelector("table");
+    let rows = table.querySelectorAll("tr");
+    let csvContent = "";
 
+    rows.forEach(row => {
+        let rowData = [];
+        row.querySelectorAll("th, td").forEach(cell => {
+            rowData.push('"' + cell.innerText + '"'); // Handle commas in cell values
+        });
+        csvContent += rowData.join(",") + "\n";
+    });
+
+    let blob = new Blob([csvContent], { type: "text/csv" });
+    let url = URL.createObjectURL(blob);
+    let a = document.createElement("a");
+    a.href = url;
+    a.download = "reservations.csv"; // File name
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
 });
 
 loadReservations();
