@@ -209,17 +209,17 @@ window.addEventListener("touchend", (e) => {
 printBtn.addEventListener("click", function () {
     let table = document.querySelector("table");
     let rows = table.querySelectorAll("tr");
-    let csvContent = "";
+    let csvContent = "\uFEFF"; // UTF-8 BOM for Excel compatibility
 
     rows.forEach(row => {
         let rowData = [];
         row.querySelectorAll("th, td").forEach(cell => {
-            rowData.push('"' + cell.innerText + '"'); // Handle commas in cell values
+            rowData.push('"' + cell.innerText.replace(/"/g, '""') + '"'); // Escape double quotes
         });
         csvContent += rowData.join(",") + "\n";
     });
 
-    let blob = new Blob([csvContent], { type: "text/csv" });
+    let blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     let url = URL.createObjectURL(blob);
     let a = document.createElement("a");
     a.href = url;
